@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="View_58_BigFanart">
+        <control type="group">
+            <visible>Control.IsVisible(58)</visible>
+            <include>Visible_Right</include>
+            <include>OpenClose_Right</include>
+            <top>190</top>
+            <left>93</left>
+            <right>93</right>
+            <height>690</height>
+            <control type="group">
+                <control type="image">
+                    <left>-10</left>
+                    <right>-10</right>
+                    <top>-10</top>
+                    <bottom>-10</bottom>
+                    <texture>dialogs/back.png</texture>
+                </control>
+                <control type="wraplist" id="58">
+                    <left>0</left>
+                    <right>0</right>
+                    <top>0</top>
+                    <bottom>0</bottom>
+                    <onleft>58</onleft>
+                    <onright>58</onright>
+                    <ondown>5199</ondown>
+                    <onup condition="!Skin.HasSetting(KioskMode)">9000</onup>
+                    <pagecontrol>5199</pagecontrol>
+                    <preloaditems>0</preloaditems>
+                    <orientation>horizontal</orientation>
+                    <viewtype label="$LOCALIZE[40091]">bigwide</viewtype>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | Container.Content(artists)</visible>
+                    <itemlayout height="690" width="1900">
+                        <control type="image">
+                            <posx>-93</posx>
+                            <posy>-190</posy>
+                            <width>1920</width>
+                            <height>1080</height>
+                            <aspectratio scalediffuse="false">scale</aspectratio>
+                            <texture background="true" fallback="DefaultVideoFanart.png">$VAR[FanartImageVar]</texture>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="690" width="1900">
+                        <control type="image">
+                            <posx>-93</posx>
+                            <posy>-190</posy>
+                            <width>1920</width>
+                            <height>1080</height>
+                            <aspectratio scalediffuse="false">scale</aspectratio>
+                            <texture background="true" fallback="DefaultVideoFanart.png">$VAR[FanartImageVar]</texture>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <left>0</left>
+                <right>0</right>
+                <bottom>0</bottom>
+                <height>70</height>
+                <control type="image">
+                    <left>0</left>
+                    <right>0</right>
+                    <bottom>0</bottom>
+                    <height>70</height>
+                    <texture>dialogs/back.png</texture>
+                </control>
+                <control type="label">
+                    <posx>30</posx>
+                    <width>auto</width>
+                    <aligny>center</aligny>
+                    <height>70</height>
+                    <label>[B]$INFO[ListItem.Label][/B]</label>
+                </control>
+                <control type="image">
+                    <centerright>40</centerright>
+                    <bottom>11</bottom>
+                    <width>48</width>
+                    <height>48</height>
+                    <texture>$VAR[ListWatchedIconVar]</texture>
+                    <visible>!Container.Content(artists) + !Container.Content(albums) + !Container.Content(albums)</visible>
+                </control>
+            </control>
+        </control>
+        <control type="group">
+            <visible>Control.IsVisible(58)</visible>
+            <control type="image">
+                <left>35</left>
+                <centertop>50%</centertop>
+                <width>28</width>
+                <height>28</height>
+                <texture flipx="true" colordiffuse="$VAR[SkinColorVar]">overlays/arrowright.png</texture>
+                <animation effect="zoom" start="0,100" end="100,100" center="auto" time="200">VisibleChange</animation>
+                <animation effect="zoom" start="0,100" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
+                <animation effect="zoom" start="100,100" end="0,100" center="auto" time="200">WindowClose</animation>
+            </control>
+            <control type="image">
+                <right>35</right>
+                <centertop>50%</centertop>
+                <width>28</width>
+                <height>28</height>
+                <texture colordiffuse="$VAR[SkinColorVar]">overlays/arrowright.png</texture>
+                <animation effect="zoom" start="0,100" end="100,100" center="auto" time="200">VisibleChange</animation>
+                <animation effect="zoom" start="0,100" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
+                <animation effect="zoom" start="100,100" end="0,100" center="auto" time="200">WindowClose</animation>
+            </control>
+            <control type="button" id="58500">
+                <left>35</left>
+                <centertop>50%</centertop>
+                <width>28</width>
+                <height>28</height>
+                <texturefocus></texturefocus>
+                <texturenofocus></texturenofocus>
+                <onclick>Control.Move(58,-1)</onclick>
+                <visible allowhiddenfocus="true">Container(58).HasPrevious + [Control.HasFocus(58) | Control.HasFocus(58500)]</visible>
+            </control>
+            <control type="button" id="58501">
+                <right>35</right>
+                <centertop>50%</centertop>
+                <width>28</width>
+                <height>28</height>
+                <texturefocus></texturefocus>
+                <texturenofocus></texturenofocus>
+                <onclick>Control.Move(58,1)</onclick>
+                <visible allowhiddenfocus="true">Container(58).HasNext + [Control.HasFocus(58) | Control.HasFocus(58501)]</visible>
+            </control>
+        </control>
+    </include>
+</includes>

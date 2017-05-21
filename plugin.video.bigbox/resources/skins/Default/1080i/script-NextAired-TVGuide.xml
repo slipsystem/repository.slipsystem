@@ -1,0 +1,2101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <backgroundcolor>background</backgroundcolor>
+    <controls>
+        <include>DefaultBackground</include>
+        <control type="group">
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+            <control type="group">
+                <visible>!String.IsEmpty(Window(Home).Property(TVGuide.BackgroundFanart))</visible>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture background="true" colordiffuse="$VAR[Background_Opacity]">$INFO[Container(200).ListItem.Property(Fanart)]</texture>
+                    <visible>Control.HasFocus(200)</visible>
+                    <fadetime>600</fadetime>
+                    <animation effect="fade" time="600">Visible</animation>
+                    <animation effect="fade" time="600">Hidden</animation>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture background="true" colordiffuse="$VAR[Background_Opacity]">$INFO[Container(201).ListItem.Property(Fanart)]</texture>
+                    <visible>Control.HasFocus(201)</visible>
+                    <fadetime>600</fadetime>
+                    <animation effect="fade" time="600">Visible</animation>
+                    <animation effect="fade" time="600">Hidden</animation>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture background="true" colordiffuse="$VAR[Background_Opacity]">$INFO[Container(202).ListItem.Property(Fanart)]</texture>
+                    <visible>Control.HasFocus(202)</visible>
+                    <fadetime>600</fadetime>
+                    <animation effect="fade" time="600">Visible</animation>
+                    <animation effect="fade" time="600">Hidden</animation>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture background="true" colordiffuse="$VAR[Background_Opacity]">$INFO[Container(203).ListItem.Property(Fanart)]</texture>
+                    <visible>Control.HasFocus(203)</visible>
+                    <fadetime>600</fadetime>
+                    <animation effect="fade" time="600">Visible</animation>
+                    <animation effect="fade" time="600">Hidden</animation>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture background="true" colordiffuse="$VAR[Background_Opacity]">$INFO[Container(204).ListItem.Property(Fanart)]</texture>
+                    <visible>Control.HasFocus(204)</visible>
+                    <fadetime>600</fadetime>
+                    <animation effect="fade" time="600">Visible</animation>
+                    <animation effect="fade" time="600">Hidden</animation>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture background="true" colordiffuse="$VAR[Background_Opacity]">$INFO[Container(205).ListItem.Property(Fanart)]</texture>
+                    <visible>Control.HasFocus(205)</visible>
+                    <fadetime>600</fadetime>
+                    <animation effect="fade" time="600">Visible</animation>
+                    <animation effect="fade" time="600">Hidden</animation>
+                </control>
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>100%</width>
+                    <height>100%</height>
+                    <aspectratio>scale</aspectratio>
+                    <texture background="true" colordiffuse="$VAR[Background_Opacity]">$INFO[Container(206).ListItem.Property(Fanart)]</texture>
+                    <visible>Control.HasFocus(206)</visible>
+                    <fadetime>600</fadetime>
+                    <animation effect="fade" time="600">Visible</animation>
+                    <animation effect="fade" time="600">Hidden</animation>
+                </control>
+            </control>
+            <control type="group">
+                <posy>860</posy>
+                <align>center</align>
+                <visible>Control.HasFocus(200)</visible>
+                <control type="image">
+                    <width>1770</width>
+                    <height>110</height>
+                    <centerleft>50%</centerleft>
+                    <texture background="true">overlays/back.png</texture>
+                </control>
+                <control type="label">
+                    <description>Episode title</description>
+                    <posx>90</posx>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <label>$INFO[Container(200).ListItem.Label]</label>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                    <font>font20_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode genre</description>
+                    <right>90</right>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <align>right</align>
+                    <label>$INFO[Container(200).ListItem.Property(Genre)]</label>
+                    <font>font13_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>40</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20359] : [/COLOR]$INFO[Container(200).ListItem.Property(NextNumber)] - $INFO[Container(200).ListItem.Property(NextTitle)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20416] : [/COLOR]$INFO[Container(200).ListItem.Property(ShortTime)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode network</description>
+                    <right>90</right>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <align>right</align>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[29909] : [/COLOR]$INFO[Container(200).ListItem.Property(Network)]</label>
+                    <font>font12</font>
+                </control>
+            </control>
+            <control type="group">
+                <posy>860</posy>
+                <align>center</align>
+                <visible>Control.HasFocus(201)</visible>
+                <control type="image">
+                    <width>1770</width>
+                    <height>110</height>
+                    <centerleft>50%</centerleft>
+                    <texture background="true">overlays/back.png</texture>
+                </control>
+                <control type="label">
+                    <description>Episode title</description>
+                    <posx>90</posx>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <label>$INFO[Container(201).ListItem.Label]</label>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                    <font>font20_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode genre</description>
+                    <right>90</right>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <align>right</align>
+                    <label>$INFO[Container(201).ListItem.Property(Genre)]</label>
+                    <font>font13_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>40</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20359] : [/COLOR]$INFO[Container(201).ListItem.Property(NextNumber)] - $INFO[Container(201).ListItem.Property(NextTitle)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20416] : [/COLOR]$INFO[Container(201).ListItem.Property(ShortTime)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode network</description>
+                    <right>90</right>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <align>right</align>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[29909] : [/COLOR]$INFO[Container(201).ListItem.Property(Network)]</label>
+                    <font>font12</font>
+                </control>
+            </control>
+            <control type="group">
+                <posy>860</posy>
+                <align>center</align>
+                <visible>Control.HasFocus(202)</visible>
+                <control type="image">
+                    <width>1770</width>
+                    <height>110</height>
+                    <centerleft>50%</centerleft>
+                    <texture background="true">overlays/back.png</texture>
+                </control>
+                <control type="label">
+                    <description>Episode title</description>
+                    <posx>90</posx>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <label>$INFO[Container(202).ListItem.Label]</label>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                    <font>font20_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode genre</description>
+                    <right>90</right>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <align>right</align>
+                    <label>$INFO[Container(202).ListItem.Property(Genre)]</label>
+                    <font>font13_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>40</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20359] : [/COLOR]$INFO[Container(202).ListItem.Property(NextNumber)] - $INFO[Container(202).ListItem.Property(NextTitle)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20416] : [/COLOR]$INFO[Container(202).ListItem.Property(ShortTime)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode network</description>
+                    <right>90</right>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <align>right</align>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[29909] : [/COLOR]$INFO[Container(202).ListItem.Property(Network)]</label>
+                    <font>font12</font>
+                </control>
+            </control>
+            <control type="group">
+                <posy>860</posy>
+                <align>center</align>
+                <visible>Control.HasFocus(203)</visible>
+                <control type="image">
+                    <width>1770</width>
+                    <height>110</height>
+                    <centerleft>50%</centerleft>
+                    <texture background="true">overlays/back.png</texture>
+                </control>
+                <control type="label">
+                    <description>Episode title</description>
+                    <posx>90</posx>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <label>$INFO[Container(203).ListItem.Label]</label>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                    <font>font20_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode genre</description>
+                    <right>90</right>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <align>right</align>
+                    <label>$INFO[Container(203).ListItem.Property(Genre)]</label>
+                    <font>font13_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>40</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20359] : [/COLOR]$INFO[Container(203).ListItem.Property(NextNumber)] - $INFO[Container(203).ListItem.Property(NextTitle)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20416] : [/COLOR]$INFO[Container(203).ListItem.Property(ShortTime)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode network</description>
+                    <right>90</right>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <align>right</align>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[29909] : [/COLOR]$INFO[Container(203).ListItem.Property(Network)]</label>
+                    <font>font12</font>
+                </control>
+            </control>
+            <control type="group">
+                <posy>860</posy>
+                <align>center</align>
+                <visible>Control.HasFocus(204)</visible>
+                <control type="image">
+                    <width>1770</width>
+                    <height>110</height>
+                    <centerleft>50%</centerleft>
+                    <texture background="true">overlays/back.png</texture>
+                </control>
+                <control type="label">
+                    <description>Episode title</description>
+                    <posx>90</posx>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <label>$INFO[Container(204).ListItem.Label]</label>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                    <font>font20_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode genre</description>
+                    <right>90</right>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <align>right</align>
+                    <label>$INFO[Container(204).ListItem.Property(Genre)]</label>
+                    <font>font13_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>40</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20359] : [/COLOR]$INFO[Container(204).ListItem.Property(NextNumber)] - $INFO[Container(204).ListItem.Property(NextTitle)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20416] : [/COLOR]$INFO[Container(204).ListItem.Property(ShortTime)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode network</description>
+                    <right>90</right>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <align>right</align>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[29909] : [/COLOR]$INFO[Container(204).ListItem.Property(Network)]</label>
+                    <font>font12</font>
+                </control>
+            </control>
+            <control type="group">
+                <posy>860</posy>
+                <align>center</align>
+                <visible>Control.HasFocus(205)</visible>
+                <control type="image">
+                    <width>1770</width>
+                    <height>110</height>
+                    <centerleft>50%</centerleft>
+                    <texture background="true">overlays/back.png</texture>
+                </control>
+                <control type="label">
+                    <description>Episode title</description>
+                    <posx>90</posx>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <label>$INFO[Container(205).ListItem.Label]</label>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                    <font>font20_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode genre</description>
+                    <right>90</right>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <align>right</align>
+                    <label>$INFO[Container(205).ListItem.Property(Genre)]</label>
+                    <font>font13_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>40</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20359] : [/COLOR]$INFO[Container(205).ListItem.Property(NextNumber)] - $INFO[Container(205).ListItem.Property(NextTitle)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20416] : [/COLOR]$INFO[Container(205).ListItem.Property(ShortTime)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode network</description>
+                    <right>90</right>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <align>right</align>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[29909] : [/COLOR]$INFO[Container(205).ListItem.Property(Network)]</label>
+                    <font>font12</font>
+                </control>
+            </control>
+            <control type="group">
+                <posy>860</posy>
+                <align>center</align>
+                <visible>Control.HasFocus(206)</visible>
+                <control type="image">
+                    <width>1770</width>
+                    <height>110</height>
+                    <centerleft>50%</centerleft>
+                    <texture background="true">overlays/back.png</texture>
+                </control>
+                <control type="label">
+                    <description>Episode title</description>
+                    <posx>90</posx>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <label>$INFO[Container(206).ListItem.Label]</label>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                    <font>font20_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode genre</description>
+                    <right>90</right>
+                    <posy>0</posy>
+                    <width>1040</width>
+                    <height>40</height>
+                    <align>right</align>
+                    <label>$INFO[Container(206).ListItem.Property(Genre)]</label>
+                    <font>font13_title</font>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>40</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20359] : [/COLOR]$INFO[Container(206).ListItem.Property(NextNumber)] - $INFO[Container(206).ListItem.Property(NextTitle)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode info</description>
+                    <posx>90</posx>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[20416] : [/COLOR]$INFO[Container(206).ListItem.Property(ShortTime)]</label>
+                    <font>font12</font>
+                    <scroll>true</scroll>
+                    <scrollout>false</scrollout>
+                </control>
+                <control type="label">
+                    <description>Episode network</description>
+                    <right>90</right>
+                    <posy>70</posy>
+                    <width>1040</width>
+                    <height>25</height>
+                    <align>right</align>
+                    <label>[COLOR=$VAR[SkinColorVar]]$LOCALIZE[29909] : [/COLOR]$INFO[Container(206).ListItem.Property(Network)]</label>
+                    <font>font12</font>
+                </control>
+            </control>
+        </control>
+        <control type="grouplist" id="2000">
+            <posy>100</posy>
+            <width>1920</width>
+            <height>720</height>
+            <orientation>horizontal</orientation>
+            <align>center</align>
+            <itemgap>10</itemgap>
+            <control type="group">
+                <description>Monday</description>
+                <visible>!String.IsEqual(Window(Home).Property(NextAired.200.Wday),)</visible>
+                <width>250</width>
+                <height>655</height>
+                <control type="image">
+                    <description>Bg</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <texture>buttons/button-nofo.png</texture>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <label>$INFO[Window(Home).Property(NextAired.200.Weekday)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <font>font12</font>
+                </control>
+                <control type="panel" id="200">
+                    <posx>20</posx>
+                    <posy>100</posy>
+                    <width>250</width>
+                    <height>660</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onup>200</onup>
+                    <ondown>200</ondown>
+                    <onleft>9000</onleft>
+                    <onright>201</onright>
+                    <itemlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <description>Tuesday</description>
+                <visible>!String.IsEqual(Window(Home).Property(NextAired.201.Wday),)</visible>
+                <width>250</width>
+                <height>655</height>
+                <control type="image">
+                    <description>Bg</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <texture>buttons/button-nofo.png</texture>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <label>$INFO[Window(Home).Property(NextAired.201.Weekday)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <font>font12</font>
+                </control>
+                <control type="panel" id="201">
+                    <posx>20</posx>
+                    <posy>100</posy>
+                    <width>250</width>
+                    <height>720</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onup>201</onup>
+                    <ondown>201</ondown>
+                    <onleft>200</onleft>
+                    <onright>202</onright>
+                    <itemlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <description>Wednesday</description>
+                <visible>!String.IsEqual(Window(Home).Property(NextAired.202.Wday),)</visible>
+                <width>250</width>
+                <height>655</height>
+                <control type="image">
+                    <description>Bg</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <texture>buttons/button-nofo.png</texture>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <label>$INFO[Window(Home).Property(NextAired.202.Weekday)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <font>font12</font>
+                </control>
+                <control type="panel" id="202">
+                    <posx>20</posx>
+                    <posy>100</posy>
+                    <width>250</width>
+                    <height>720</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onup>202</onup>
+                    <ondown>202</ondown>
+                    <onleft>201</onleft>
+                    <onright>203</onright>
+                    <itemlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <description>Thursday</description>
+                <visible>!String.IsEqual(Window(Home).Property(NextAired.203.Wday),)</visible>
+                <width>250</width>
+                <height>655</height>
+                <control type="image">
+                    <description>Bg</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <texture>buttons/button-nofo.png</texture>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <label>$INFO[Window(Home).Property(NextAired.203.Weekday)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <font>font12</font>
+                </control>
+                <control type="panel" id="203">
+                    <posx>20</posx>
+                    <posy>100</posy>
+                    <width>250</width>
+                    <height>720</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onup>203</onup>
+                    <ondown>203</ondown>
+                    <onleft>202</onleft>
+                    <onright>204</onright>
+                    <itemlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <description>Friday</description>
+                <visible>!String.IsEqual(Window(Home).Property(NextAired.204.Wday),)</visible>
+                <width>250</width>
+                <height>655</height>
+                <control type="image">
+                    <description>Bg</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <texture>buttons/button-nofo.png</texture>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <label>$INFO[Window(Home).Property(NextAired.204.Weekday)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <font>font12</font>
+                </control>
+                <control type="panel" id="204">
+                    <posx>20</posx>
+                    <posy>100</posy>
+                    <width>250</width>
+                    <height>720</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onup>204</onup>
+                    <ondown>204</ondown>
+                    <onleft>203</onleft>
+                    <onright>205</onright>
+                    <itemlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <description>Saturday</description>
+                <visible>!String.IsEqual(Window(Home).Property(NextAired.205.Wday),)</visible>
+                <width>250</width>
+                <height>655</height>
+                <control type="image">
+                    <description>Bg</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <texture>buttons/button-nofo.png</texture>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <label>$INFO[Window(Home).Property(NextAired.205.Weekday)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <font>font12</font>
+                </control>
+                <control type="panel" id="205">
+                    <posx>20</posx>
+                    <posy>100</posy>
+                    <width>250</width>
+                    <height>720</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onup>205</onup>
+                    <ondown>205</ondown>
+                    <onleft>204</onleft>
+                    <onright>206</onright>
+                    <itemlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <description>Sunday</description>
+                <visible>!String.IsEqual(Window(Home).Property(NextAired.206.Wday),)</visible>
+                <width>250</width>
+                <height>655</height>
+                <control type="image">
+                    <description>Bg</description>
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <texture>buttons/button-nofo.png</texture>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>250</width>
+                    <height>80</height>
+                    <label>$INFO[Window(Home).Property(NextAired.206.Weekday)]</label>
+                    <align>center</align>
+                    <aligny>center</aligny>
+                    <font>font12</font>
+                </control>
+                <control type="panel" id="206">
+                    <posx>20</posx>
+                    <posy>100</posy>
+                    <width>250</width>
+                    <height>720</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onup>206</onup>
+                    <ondown>206</ondown>
+                    <onleft>205</onleft>
+                    <onright>200</onright>
+                    <itemlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <itemlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true">overlays/back.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout height="320" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),0)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <width>210</width>
+                            <height>299</height>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>299</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Poster</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>291</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(poster))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="60" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),1)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>40</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Banner</description>
+                                <posx>2</posx>
+                                <posy>2</posy>
+                                <width>206</width>
+                                <height>36</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(banner))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                    <focusedlayout height="91" width="250" condition="String.IsEqual(Window(Home).Property(TVGuide.ThumbType),2)">
+                        <control type="group">
+                            <posx>0</posx>
+                            <posy>0</posy>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="100" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>210</width>
+                                <height>81</height>
+                                <texture background="true" colordiffuse="$VAR[SkinColorVar]">dialogs/white.png</texture>
+                            </control>
+                            <control type="image">
+                                <description>Logo</description>
+                                <posx>4</posx>
+                                <posy>4</posy>
+                                <width>202</width>
+                                <height>73</height>
+                                <aspectratio>stretch</aspectratio>
+                                <texture background="true">$INFO[ListItem.Property(Art(clearlogo))]</texture>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+        </control>
+        <include>MediaMenuMouseOverlay</include>
+        <control type="group">
+            <include>MediaMenuCommon</include>
+            <control type="grouplist" id="9000">
+                <top>90</top>
+                <onleft>206</onleft>
+                <onright>200</onright>
+                <onup>9000</onup>
+                <ondown>9000</ondown>
+                <itemgap>0</itemgap>
+                <control type="label">
+                    <include>MediaMenuLabelCommon</include>
+                    <label>33063</label>
+                </control>
+                <control type="button" id="8">
+                    <description>Settings</description>
+                    <include>MediaMenuItemsCommon</include>
+                    <label>5</label>
+                </control>
+            </control>
+        </control>
+        <include content="TopBar">
+            <param name="breadcrumbsnextaired_label" value="$LOCALIZE[40058]" />
+            <param name="breadcrumbs_icon" value="icons/settings/video.png" />
+        </include>
+        <include content="BottomBar">
+            <param name="info_visible" value="true" />
+        </include>
+        <control type="grouplist">
+            <visible>Control.HasFocus(200)</visible>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>22000000</shadowcolor>
+                <label>$INFO[Container(200).CurrentItem,, / ]$INFO[Container(200).NumItems]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <xvisible>!String.IsEmpty(Container(200).NumItems)</xvisible>
+            </control>
+        </control>
+        <control type="grouplist">
+            <visible>Control.HasFocus(201)</visible>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>22000000</shadowcolor>
+                <label>$INFO[Container(201).CurrentItem,, / ]$INFO[Container(201).NumItems]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <xvisible>!String.IsEmpty(Container(201).NumItems)</xvisible>
+            </control>
+        </control>
+        <control type="grouplist">
+            <visible>Control.HasFocus(202)</visible>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>22000000</shadowcolor>
+                <label>$INFO[Container(202).CurrentItem,, / ]$INFO[Container(202).NumItems]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <xvisible>!String.IsEmpty(Container(202).NumItems)</xvisible>
+            </control>
+        </control>
+        <control type="grouplist">
+            <visible>Control.HasFocus(203)</visible>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>22000000</shadowcolor>
+                <label>$INFO[Container(203).CurrentItem,, / ]$INFO[Container(203).NumItems]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <xvisible>!String.IsEmpty(Container(203).NumItems)</xvisible>
+            </control>
+        </control>
+        <control type="grouplist">
+            <visible>Control.HasFocus(204)</visible>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>22000000</shadowcolor>
+                <label>$INFO[Container(204).CurrentItem,, / ]$INFO[Container(204).NumItems]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <xvisible>!String.IsEmpty(Container(204).NumItems)</xvisible>
+            </control>
+        </control>
+        <control type="grouplist">
+            <visible>Control.HasFocus(205)</visible>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>22000000</shadowcolor>
+                <label>$INFO[Container(205).CurrentItem,, / ]$INFO[Container(205).NumItems]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <xvisible>!String.IsEmpty(Container(205).NumItems)</xvisible>
+            </control>
+        </control>
+        <control type="grouplist">
+            <visible>Control.HasFocus(206)</visible>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <animation effect="fade" time="200">VisibleChange</animation>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>22000000</shadowcolor>
+                <label>$INFO[Container(206).CurrentItem,, / ]$INFO[Container(206).NumItems]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <xvisible>!String.IsEmpty(Container(206).NumItems)</xvisible>
+            </control>
+        </control>
+    </controls>
+</window>

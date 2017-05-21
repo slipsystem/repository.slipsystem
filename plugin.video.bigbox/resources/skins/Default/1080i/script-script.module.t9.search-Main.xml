@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+    <defaultcontrol always="true">9090</defaultcontrol>
+    <controls>
+        <control type="group">
+            <animation effect="slide" start="-460" end="0" time="320" easing="out" tween="cubic">Visible</animation>
+            <animation effect="slide" start="0" end="-460" time="320" easing="in" tween="cubic">Hidden</animation>
+            <visible allowhiddenfocus="true">Control.HasFocus(9090) | Control.HasFocus(9091) | Control.HasFocus(600)</visible>
+            <left>0</left>
+            <animation effect="slide" start="0" end="-460" time="320" tween="cubic">WindowClose</animation>
+            <control type="image">
+                <top>78</top>
+                <left>0</left>
+                <width>484</width>
+                <height>922</height>
+                <texture>lists/panel.png</texture>
+            </control>
+            <control type="image">
+                <top>78</top>
+                <left>0</left>
+                <width>484</width>
+                <height>922</height>
+                <texture>lists/panel.png</texture>
+            </control>
+            <control type="panel" id="9090">
+                <left>25</left>
+                <top>70</top>
+                <width>447</width>
+                <height>708</height>
+                <onleft>9090</onleft>
+                <onright>Action(Close)</onright>
+                <onup condition="Integer.IsGreater(Container(9091).NumItems,0)">Control.SetFocus(9091,999)</onup>
+                <ondown condition="Integer.IsGreater(Container(9091).NumItems,0)">Control.SetFocus(9091,0)</ondown>
+                <onback>noop</onback>
+                <orientation>vertical</orientation>
+                <scrolltime tween="quadratic" easing="out">200</scrolltime>
+                <itemlayout height="110" width="120">
+                    <control type="image">
+                        <left>0</left>
+                        <top>27</top>
+                        <width>140</width>
+                        <height>133</height>
+                        <texture border="23">buttons/button-nofo.png</texture>
+                    </control>
+                    <control type="label">
+                        <left>0</left>
+                        <top>7</top>
+                        <width>140</width>
+                        <height>133</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font12</font>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <left>0</left>
+                        <top>37</top>
+                        <width>140</width>
+                        <height>133</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font10</font>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="110" width="120">
+                    <control type="image">
+                        <left>0</left>
+                        <top>27</top>
+                        <width>140</width>
+                        <height>133</height>
+                        <texture border="23" colordiffuse="$VAR[SkinColorVar]">buttons/button-fo.png</texture>
+                    </control>
+                    <control type="label">
+                        <left>0</left>
+                        <top>7</top>
+                        <width>140</width>
+                        <height>133</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font12</font>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                    <control type="label">
+                        <left>0</left>
+                        <top>37</top>
+                        <width>140</width>
+                        <height>133</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font10</font>
+                        <label>$INFO[ListItem.Label2]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+            <control type="list" id="9091">
+                <left>25</left>
+                <top>590</top>
+                <width>390</width>
+                <height>400</height>
+                <onleft>9091</onleft>
+                <onright>Action(Close)</onright>
+                <onup>9090</onup>
+                <ondown>9091</ondown>
+                <onback>noop</onback>
+                <orientation>vertical</orientation>
+                <scrolltime tween="quadratic" easing="out">200</scrolltime>
+                <itemlayout height="55" width="380">
+                    <control type="image">
+                        <left>0</left>
+                        <top>-5</top>
+                        <width>380</width>
+                        <height>85</height>
+                        <texture border="23">buttons/button-nofo.png</texture>
+                    </control>
+                    <control type="label">
+                        <left>25</left>
+                        <top>-9</top>
+                        <width>330</width>
+                        <height>85</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font12</font>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="55" width="380">
+                    <control type="image">
+                        <left>0</left>
+                        <top>-5</top>
+                        <width>380</width>
+                        <height>85</height>
+                        <texture border="23">buttons/button-nofo.png</texture>
+                        <visible>!Control.HasFocus(9091)</visible>
+                    </control>
+                    <control type="image">
+                        <left>0</left>
+                        <top>-5</top>
+                        <width>380</width>
+                        <height>85</height>
+                        <texture border="23" colordiffuse="$VAR[SkinColorVar]">buttons/button-fo.png</texture>
+                        <visible>Control.HasFocus(9091)</visible>
+                    </control>
+                    <control type="label">
+                        <left>25</left>
+                        <top>-9</top>
+                        <width>330</width>
+                        <height>85</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <font>font12</font>
+                        <label>$INFO[ListItem.Label]</label>
+                    </control>
+                </focusedlayout>
+            </control>
+            <control type="label" id="600">
+                <left>25</left>
+                <top>550</top>
+                <width>380</width>
+                <height>50</height>
+                <align>center</align>
+                <textoffsetx>15</textoffsetx>
+                <textcolor>$VAR[SkinColorVar]</textcolor>
+                <scroll>true</scroll>
+                <scrollspeed>20</scrollspeed>
+            </control>
+        </control>
+    </controls>
+</window>

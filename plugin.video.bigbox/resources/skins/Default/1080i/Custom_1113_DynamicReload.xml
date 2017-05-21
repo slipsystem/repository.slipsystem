@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog" id="1113">
+	<allowoverlay>no</allowoverlay>
+    <onload>ClearProperty(RefreshList,Home)</onload>
+    <visible>!String.IsEmpty(Window(Home).Property(RefreshList))</visible>
+</window>

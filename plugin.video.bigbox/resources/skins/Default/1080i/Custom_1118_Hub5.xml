@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="window" id="1118">
+    <backgroundcolor>background</backgroundcolor>
+    <defaultcontrol always="true">9501</defaultcontrol>
+    <onunload>SetProperty(HubReturn,1118,home)</onunload>
+    
+    <controls>
+        <include content="Window_Hub">
+            <param name="categories" value="skinshortcuts-group-x1118" />
+        </include>
+    </controls>
+</window>

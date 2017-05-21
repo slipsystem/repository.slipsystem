@@ -1,0 +1,88 @@
+<?xml version="1.0" standalone="yes"?>
+<SlipSystem>
+  <Platform>
+    <Name>Atari 2600</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/stella_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Nintendo DS</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/desmume_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Magnavox Odyssey 2</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/o2em_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Sony Playstation</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/mednafen_psx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Nintendo 64</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/mupen64plus_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Nintendo Pokemon Mini</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/pokemini_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Sony PSP</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/ppsspp_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Nintendo Wii</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/dolphin_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Philips Videopac+</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/o2em_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+  <Platform>
+    <Name>Sega 32X</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/picodrive_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Sega Game Gear</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/genesis_plus_gx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Sega Genesis</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/genesis_plus_gx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Sega Master System</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/genesis_plus_gx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Sega Pico</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/picodrive_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Sega SG-1000</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/genesis_plus_gx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>SNK Neo Geo Pocket</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/mednafen_ngp_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>SNK Neo Geo Pocket Color</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/mednafen_ngp_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>Super Nintendo Entertainment System</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/snes9x_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>TurboGrafx-16</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/mednafen_supergrafx_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>WonderSwan</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/mednafen_wswan_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+  <Platform>
+    <Name>WonderSwan Color</Name>
+    <Command>/system/bin/am start --user 0 -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -e ROM "%ROM_PATH%" -e LIBRETRO /data/data/com.retroarch/cores/mednafen_wswan_libretro_android.so -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg -e IME com.android.inputmethod.latin/.LatinIME -n com.retroarch/.browser.retroactivity.RetroActivityFuture</Command>
+  </Platform>
+</SlipSystem>

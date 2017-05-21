@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="View_505_Wall">
+        <include content="UpDownArrows">
+            <param name="container_id" value="505" />
+            <param name="posx">937</param>
+            <param name="visible" value="!System.HasModalDialog" />
+        </include>
+        <control type="group">
+            <include>OpenClose_Right</include>
+            <left>88</left>
+            <top>172</top>
+            <visible>Control.IsVisible(505)</visible>
+            <include>Visible_Right</include>
+            <control type="panel" id="505">
+                <left>0</left>
+                <top>0</top>
+                <width>1800</width>
+                <height>720</height>
+                <onleft condition="!Skin.HasSetting(KioskMode)">9000</onleft>
+                <onright>531</onright>
+                <onup>505</onup>
+                <ondown>505</ondown>
+                <viewtype label="40216">icon</viewtype>
+                <preloaditems>2</preloaditems>
+                <pagecontrol>531</pagecontrol>
+                <scrolltime tween="cubic" easing="out">500</scrolltime>
+                <visible>Container.Content(movies) | Container.Content(sets) | Container.Content(tvshows) | Container.Content(seasons)</visible>
+                <itemlayout height="360" width="300">
+                    <control type="image">
+                        <left>-5</left>
+                        <top>0</top>
+                        <width>259</width>
+                        <height>364</height>
+                         <aspectratio>stretch</aspectratio>
+                        <texture fallback="DefaultVideoCover.png" background="true">$VAR[ListPosterVar]</texture>
+                        <bordertexture border="20">overlays/shadow.png</bordertexture>
+                        <bordersize>20</bordersize>
+                    </control>
+                    <control type="group">
+                        <left>179</left>
+                        <top>30</top>
+                        <include>UserRatingCircle</include>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="360" width="300">
+                    <control type="group">
+                        <animation effect="zoom" start="100" end="105" time="200" tween="sine" easing="inout" center="124,179" condition="!Skin.HasSetting(no_animations)">Focus</animation>
+                        <animation effect="zoom" start="105" end="100" time="200" tween="sine" easing="inout" center="124,179" condition="!Skin.HasSetting(no_animations)">UnFocus</animation>
+                        <control type="image">
+                            <left>-5</left>
+                            <top>0</top>
+                            <width>259</width>
+                            <height>364</height>
+                            <texture fallback="DefaultVideoCover.png" background="true">$VAR[ListPosterVar]</texture>
+                            <bordertexture border="20">overlays/shadow.png</bordertexture>
+                            <bordersize>20</bordersize>
+                        </control>
+                        <control type="group">
+                            <left>179</left>
+                            <top>30</top>
+                            <include>UserRatingCircle</include>
+                        </control>
+                        <control type="group">
+                        <top>15</top>
+                        <visible>!Skin.HasSetting(hide_posterinfo)</visible>
+                        <animation type="Focus">
+                            <effect type="fade" start="0" end="100" time="300" />
+                        </animation>
+                        <animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
+                        <control type="image">
+                            <left>19</left>
+                            <top>260</top>
+                            <width>212</width>
+                            <height>66</height>
+                            <texture>colors/black.png</texture>
+                            <animation effect="fade" start="0" end="70" time="50">Focus</animation>
+                        </control>
+                        <control type="textbox">
+                            <left>29</left>
+                            <top>260</top>
+                            <width>192</width>
+                            <height>65</height>
+                            <font>font10</font>
+                            <align>center</align>
+                            <aligny>center</aligny>
+                            <label>$INFO[ListItem.Label]</label>
+                            <autoscroll delay="1000" time="1000" repeat="1000">true</autoscroll>
+                        </control>
+                    </control>
+                        <control type="image">
+                            <left>15</left>
+                            <top>20</top>
+                            <width>219</width>
+                            <height>325</height>
+                            <aspectratio>stretch</aspectratio>
+                            <texture border="8" colordiffuse="$VAR[SkinColorVar]">buttons/thumbnail_focused.png</texture>
+                            <animation effect="fade" start="0" end="100" time="200" tween="sine">Focus</animation>
+                            <animation effect="fade" start="100" end="0" time="200" tween="sine">UnFocus</animation>
+                        </control>
+                        <control type="group">
+                        <animation type="Focus">
+                            <effect type="fade" start="0" end="100" time="300" />
+                        </animation>
+                        <animation effect="fade" start="100" end="0" time="0">UnFocus</animation>
+                        <control type="image">
+                            <left>17</left>
+                            <top>24</top>
+                            <width>56</width>
+                            <height>56</height>
+                            <texture>overlays/circle2.png</texture>
+                            <animation effect="fade" start="0" end="70" time="50">Focus</animation>
+                        </control>
+                        <control type="image">
+                            <left>20</left>
+                            <top>27</top>
+                            <width>50</width>
+                            <height>50</height>
+                            <texture colordiffuse="$VAR[SkinColorVar]">$VAR[ListWatchedIconVar]</texture>
+                        </control>
+                    </control>
+                    </control>                  
+                </focusedlayout>
+            </control>
+        </control>
+    </include>
+</includes>

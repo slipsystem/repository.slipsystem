@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<includes>
+    <include name="View_504_PicsList">
+        <include content="UpDownArrows">
+            <param name="container_id" value="504" />
+            <param name="visible" value="!System.HasModalDialog" />
+        </include>
+        <control type="group">
+            <description>Fanart Viewtype</description>
+            <left>90</left>
+            <top>167</top>
+            <control type="group">
+                <include>OpenClose_Right</include>
+                <visible>Control.IsVisible(504)</visible>
+                <include>Visible_Right</include>
+                <control type="image">
+                    <left>720</left>
+                    <top>-1</top>
+                    <width>1046</width>
+                    <height>737</height>
+                    <texture border="22">dialogs/dialog-bg.png</texture>
+                </control>
+                <control type="image">
+                    <left>747</left>
+                    <top>26</top>
+                    <width>992</width>
+                    <height>684</height>
+                    <fadetime>300</fadetime>
+                    <texture border="2" background="true">$INFO[ListItem.Thumb]</texture>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <visible>!ListItem.IsParentFolder</visible>
+                </control>
+                <control type="image">
+                    <left>747</left>
+                    <top>26</top>
+                    <width>992</width>
+                    <height>684</height>
+                    <fadetime>300</fadetime>
+                    <texture border="2" background="true">DefaultBackFanart.png</texture>
+                    <aspectratio align="center" aligny="center">keep</aspectratio>
+                    <visible>ListItem.IsParentFolder</visible>
+                </control>
+            </control>
+            <control type="group">
+                <include>OpenClose_Left</include>
+                <top>18</top>
+                <visible>Control.IsVisible(504)</visible>
+                <include>Visible_Left</include>
+                <control type="image">
+                    <description>background image</description>
+                    <left>-20</left>
+                    <top>-19</top>
+                    <width>754</width>
+                    <height>737</height>
+                    <texture border="22">dialogs/dialog-bg.png</texture>
+                </control>
+                <control type="list" id="504">
+                    <left>2</left>
+                    <top>3</top>
+                    <width>710</width>
+                    <height>693</height>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <orientation>vertical</orientation>
+                    <pagecontrol>504600</pagecontrol>
+                    <onleft condition="!Skin.HasSetting(KioskMode)">9000</onleft>
+                    <onright>504600</onright>
+                    <onup>504</onup>
+                    <ondown>504</ondown>
+                    <viewtype label="$LOCALIZE[535]">list</viewtype>
+                    <visible>Container.Content(images)</visible>
+                    <focusedlayout height="63">
+                        <control type="image">
+                            <left>0</left>
+                            <top>0</top>
+                            <width>710</width>
+                            <height>63</height>
+                            <texture border="90,3,90,3">lists/separator.png</texture>
+                            <visible>!Control.HasFocus(504)</visible>
+                        </control>
+                        <control type="image">
+                            <left>0</left>
+                            <top>0</top>
+                            <width>710</width>
+                            <height>65</height>
+                            <texture colordiffuse="$VAR[SkinColorVar]">lists/focus.png</texture>
+                            <visible>Control.HasFocus(504)</visible>
+                        </control>
+                        <control type="label">
+                            <left>21</left>
+                            <top>0</top>
+                            <height>63</height>
+                            <width>581</width>
+                            <aligny>center</aligny>
+                            <scroll>true</scroll>
+                            <font>fontContextMenu</font>
+                            <label>$INFO[ListItem.Label]</label>
+                            <shadowcolor>text_shadow</shadowcolor>
+                        </control>
+                        <control type="label">
+                            <left>135</left>
+                            <top>0</top>
+                            <height>63</height>
+                            <width>555</width>
+                            <align>right</align>
+                            <aligny>center</aligny>
+                            <font>font12</font>
+                            <label>$VAR[ListLabel2Var]</label>
+                            <animation effect="fade" start="70" end="100" time="300" reversible="false">Focus</animation>
+                            <shadowcolor>text_shadow</shadowcolor>
+                        </control>
+                    </focusedlayout>
+                    <itemlayout height="63">
+                        <control type="image">
+                            <left>0</left>
+                            <top>3</top>
+                            <width>710</width>
+                            <height>63</height>
+                            <texture border="90,3,90,3">lists/separator.png</texture>
+                        </control>
+                        <control type="label">
+                            <left>21</left>
+                            <top>0</top>
+                            <height>63</height>
+                            <width>581</width>
+                            <aligny>center</aligny>
+                            <font>fontContextMenu</font>
+                            <label>$INFO[ListItem.Label]</label>
+                            <shadowcolor>text_shadow</shadowcolor>
+                        </control>
+                        <control type="label">
+                            <left>135</left>
+                            <top>0</top>
+                            <height>63</height>
+                            <width>555</width>
+                            <align>right</align>
+                            <aligny>center</aligny>
+                            <font>font12</font>
+                            <label>$VAR[ListLabel2Var]</label>
+                            <textcolor>grey</textcolor>
+                            <shadowcolor>text_shadow</shadowcolor>
+                        </control>
+                    </itemlayout>
+                </control>
+                <control type="scrollbar" id="504600">
+                    <left>720</left>
+                    <top>1</top>
+                    <width>12</width>
+                    <height>696</height>
+                    <onleft>504</onleft>
+                    <onright>504</onright>
+                    <orientation>vertical</orientation>
+                </control>
+            </control>
+        </control>
+    </include>
+</includes>

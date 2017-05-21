@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<SlipSystem>
+  <Platform>
+    <Name>Atari 2600</Name>
+    <Command>retroarch -L /usr/lib/libretro/stella_libretro.so "%ROM_PATH%"</Command>
+  </Platform>
+  <Platform>
+    <Name>Nintendo DS</Name>
+    <Command>retroarch -L /usr/lib/libretro/desmume_libretro.so "%ROM_PATH%"</Command>
+  </Platform>
+</SlipSystem>

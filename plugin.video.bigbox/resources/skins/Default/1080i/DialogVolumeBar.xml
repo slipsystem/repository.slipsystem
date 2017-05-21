@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<zorder>1</zorder>
+    <controls>
+        <control type="progress" id="20">
+            <include>HiddenObject</include>
+            <info>Player.Volume</info>
+        </control>
+        <control type="group">
+            <visible>!Window.IsActive(startup)</visible>
+            <right>0</right>
+ 			<width>100</width>
+            <top>0</top>
+            <animation effect="fade" start="0" end="100" time="150">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="150">WindowClose</animation>
+             <control type="image">
+                <left>6</left>
+                <top>-11</top>
+                <width>100</width>
+                <height>100</height>
+                <texture colordiffuse="ffffffff">dialogs/extendedprogress/loading-back.png</texture>
+            </control>
+            <control type="image">
+                <left>6</left>
+                <top>-11</top>
+                <width>100</width>
+                <height>100</height>
+                <texture colordiffuse="$VAR[SkinColorVar]">$INFO[Control.GetLabel(20),dialogs/volume/progress/p,.png]</texture>
+                <animation effect="fade" start="100" end="0" delay="300" time="500" tween="sine" condition="Player.Muted">Conditional</animation>
+            </control>
+            <control type="image">
+                <left>37</left>
+                <top>19</top>
+                <width>40</width>
+                <height>40</height>
+                <texture>dialogs/volume/mute.png</texture>
+                <visible>Player.Muted</visible>
+            </control>
+            <control type="label">
+                <left>37</left>
+                <top>19</top>
+                <width>38</width>
+                <height>38</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <font>Font-Volume</font>
+                <label>$VAR[VolumeLabelVar]</label>
+            </control>
+        </control>
+    </controls>
+</window>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog" id="1112">
+	<defaultcontrol always="true">3012</defaultcontrol>
+	<onload>Dialog.Close(fullscreeninfo,true)</onload>
+	<visible>Window.IsActive(fullscreenvideo) + VideoPlayer.Content(livetv) + !Skin.HasSetting(disable_PVRNextUp) + [Integer.IsGreater(Player.Duration(mm),05) | Integer.IsGreater(Player.Duration(hh),00)]</visible>
+	<visible>!Window.IsVisible(VideoOSD.xml) + !Window.IsVisible(DialogPVRChannelsOSD.xml) + !Window.IsVisible(DialogPVRGuideOSD.xml)</visible>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsVisible(videoosd) + Window.IsVisible(fullscreenvideo) + Integer.IsEqual(Player.TimeRemaining(hh),00) + Integer.IsEqual(Player.TimeRemaining(mm),00) + Integer.IsLessOrEqual(Player.TimeRemaining(ss),30)</visible>
+			<right>64</right>
+			<bottom>90</bottom>
+			<width>378</width>
+			<height>324</height>
+			<control type="image">
+				<top>30</top>
+				<width>378</width>
+				<height>256</height>
+				<texture>dialogs/nextup/nextup.png</texture>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+			</control>
+			<control type="image" description="blackline">
+				<top>30</top>
+				<width>378</width>
+				<height>36</height>
+				<aspectratio scalediffuse="false">scale</aspectratio>
+				<texture>dialogs/nextup/nextup.png</texture>
+			</control>
+			<control type="label">
+				<top>30</top>
+				<width>378</width>
+				<height>36</height>
+				<font>font12</font>
+				<aligny>center</aligny>
+				<align>center</align>
+				<textoffsetx>5</textoffsetx>
+				<textcolor>ffffffff</textcolor>
+				<shadowcolor>black</shadowcolor>
+				<label>[UPPERCASE]$LOCALIZE[40217][/UPPERCASE]</label>
+			</control>
+			<control type="image" id="123123">
+				<top>76</top>
+				<left>10</left>
+				<width>358</width>
+				<height>200</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<texture>http://localhost:52307/getpvrthumb&amp;title=$INFO[VideoPlayer.NextTitle]&amp;channel=$INFO[VideoPlayer.ChannelName]&amp;type=landscape,fanart,thumb,poster</texture>
+			</control>
+			<control type="image">
+				<top>76</top>
+				<left>10</left>
+				<width>358</width>
+				<height>200</height>
+				<aspectratio align="center" aligny="center">keep</aspectratio>
+				<texture fallback="DefaultVideoFanart.png">$INFO[Player.Art(thumb)]</texture>
+				<visible>String.IsEmpty(Control.GetLabel(123123))</visible>
+			</control>
+			<control type="image">
+				<top>286</top>
+				<width>378</width>
+				<height>68</height>
+				<texture colordiffuse="$VAR[SkincolorVar]">colors/white.png</texture>
+			</control>
+			<control type="label">
+				<top>286</top>
+				<width>378</width>
+				<height>68</height>
+				<font>font12</font>
+				<shadowcolor>black</shadowcolor>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textoffsetx>5</textoffsetx>
+				<scroll>true</scroll>
+				<label>$INFO[VideoPlayer.NextTitle]</label>
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<zorder>3</zorder>
+	<controls>
+		<control type="group">
+			<visible>!Window.IsVisible(Startup.xml) + ![[Window.IsActive(fullscreenvideo) | Window.IsActive(fullscreeninfo) | Window.IsActive(visualisation)] + Skin.HasSetting(hide_popup)]</visible>
+			<depth>DepthMax</depth>
+			<top>945</top>
+			<centerleft>50%</centerleft>
+ 			<width>640</width>
+			<include>Animation_DialogPopupOpenClose</include>
+			<animation effect="slide" end="605,0" time="0" condition="String.IsEqual(Skin.String(PopupPosition.label),$LOCALIZE[40197]) | String.IsEqual(Skin.String(PopupPosition.label),$LOCALIZE[40200])">conditional</animation>
+			<animation effect="slide" end="-605,0" time="0" condition="String.IsEqual(Skin.String(PopupPosition.label),$LOCALIZE[40198]) | String.IsEqual(Skin.String(PopupPosition.label),$LOCALIZE[40201])">conditional</animation>
+			<animation effect="slide" end="0,-910" time="0" condition="String.IsEqual(Skin.String(PopupPosition.label),$LOCALIZE[40199]) | String.IsEqual(Skin.String(PopupPosition.label),$LOCALIZE[40200]) | String.IsEqual(Skin.String(PopupPosition.label),$LOCALIZE[40201])">conditional</animation>
+			<visible>String.IsEmpty(Window(Home).Property(script.cinemavision.running))</visible>
+			<control type="image">
+				<left>-25</left>
+				<top>-25</top>
+				<width>690</width>
+				<height>150</height>
+				<colordiffuse>EEFFFFFF</colordiffuse>
+				<texture border="22">dialogs/dialog-bg.png</texture>
+			</control>
+			<control type="image" id="400">
+				<description>avatar</description>
+				<left>10</left>
+				<top>10</top>
+				<width>80</width>
+				<height>80</height>
+				<aspectratio>keep</aspectratio>
+			</control>
+			<control type="fadelabel" id="401">
+				<description>Line 1 Label</description>
+				<left>105</left>
+				<top>20</top>
+				<width>520</width>
+				<height>18</height>
+				<font>font24_title</font>
+				<aligny>center</aligny>
+				<scrollout>false</scrollout>
+				<pauseatend>2000</pauseatend>
+			</control>
+			<control type="fadelabel" id="402">
+				<description>Line 2 Label</description>
+				<left>106</left>
+				<top>55</top>
+				<width>520</width>
+				<height>20</height>
+				<font>font12</font>
+				<aligny>center</aligny>
+				<scrollout>false</scrollout>
+				<pauseatend>2000</pauseatend>
+			</control>
+		</control>	
+	</controls>
+</window>

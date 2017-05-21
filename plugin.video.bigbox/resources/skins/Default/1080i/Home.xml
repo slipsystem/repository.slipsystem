@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <onload>RunScript(script.skinshortcuts,type=buildxml&amp;mainmenuID=9000&amp;group=mainmenu|videos|movie|tvshow|musicvideo|music|livetv|radio|picture|addon|weather|x1114|x1115|x1116|x1117|x1118|powermenu)</onload>
+    <onload condition="Skin.HasSetting(Skin_EnableAnimatedPosters)">Skin.SetBool(SkinHelper.EnableAnimatedPosters)</onload>
+    <onload condition="!Skin.HasSetting(Skin_EnableAnimatedPosters)">Skin.Reset(SkinHelper.EnableAnimatedPosters)</onload>
+    <onload>Skin.SetBool(SkinHelper.EnableExtendedArt)</onload>
+    <onload>Skin.SetBool(SkinHelper.EnableMusicArt)</onload>
+    <onload>Skin.SetBool(SkinHelper.EnablePVRThumbs)</onload>
+    <onload>Skin.SetBool(SkinHelper.EnableAddonsLookups)</onload>
+    <onunload>ClearProperty(SkinHelper.WidgetContainer)</onunload>
+    <defaultcontrol>9000</defaultcontrol>
+    <backgroundcolor>background</backgroundcolor>
+    <controls>
+        <control type="button" id="20000">
+            <include>HiddenObject</include>
+            <animation effect="fade" time="300" start="100" end="0">Focus</animation>
+            <onfocus>SetFocus(2000)</onfocus>
+            <onclick>noop</onclick>
+            <visible allowhiddenfocus="true">Control.HasFocus(20000)</visible>
+        </control>
+        <control type="button" id="20001">
+            <include>HiddenObject</include>
+            <animation effect="fade" time="300" start="100" end="0">Focus</animation>
+            <onfocus>SetFocus(2000)</onfocus>
+            <onclick>noop</onclick>
+            <visible allowhiddenfocus="true">Control.HasFocus(20001)</visible>
+        </control>
+        <include>DefaultBackground</include>
+        <control type="multiimage">
+            <depth>DepthBackground</depth>
+            <include>FullScreenDimensions</include>
+            <aspectratio>scale</aspectratio>
+            <fadetime>600</fadetime>
+            <animation effect="zoom" center="auto" end="102,102" time="0" condition="Integer.IsGreater(System.StereoscopicMode,0)">conditional</animation>
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <animation effect="fade" time="400">VisibleChange</animation>
+            <imagepath background="true" colordiffuse="$VAR[Background_Opacity]">$VAR[HomeFanartVar]</imagepath>
+            <visible>![Player.HasVideo + Skin.HasSetting(background_showvideo)]</visible>
+        </control>
+        	<include condition="!Skin.HasSetting(horizontal_menu) + !Skin.HasSetting(horizontaladvanced_menu)">VerticalMenuVar</include>
+        	<include condition="Skin.HasSetting(horizontal_menu)">HorizontalMenuVar</include>
+        	<include condition="Skin.HasSetting(horizontaladvanced_menu)">AdvancedHorizontalMenuVar</include>	
+    </controls>
+</window>

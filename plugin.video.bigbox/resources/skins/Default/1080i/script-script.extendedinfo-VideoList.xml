@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+    <onload condition="String.IsEmpty(Window(home).Property(WindowColor))">SetProperty(WindowColor,FFFFFFFF,home)</onload>
+    <views>500,50</views>
+    <onunload>ClearProperty(WindowColor,home)</onunload>
+    <defaultcontrol always="true">500</defaultcontrol>
+    <backgroundcolor>background</backgroundcolor>
+    <controls>
+        <include>DefaultBackground</include>
+        <include>OpenClose_Right</include>
+        <control type="group">
+            <top>0</top>
+            <centerleft>50%</centerleft>
+            <width>1920</width>
+            <include>OpenClose_Right</include>
+            <control type="group">
+                <top>102</top>
+                <control type="image">
+                    <left>10</left>
+                    <top>0</top>
+                    <width>456</width>
+                    <bottom>104</bottom>
+                    <texture border="22">dialogs/dialog-bg.png</texture>
+                </control>
+                <control type="image">
+                    <texture fallback="DefaultVideoCover.png">$INFO[ListItem.Art(fanart_small)]</texture>
+                    <left>40</left>
+                    <top>30</top>
+                    <width>396</width>
+                    <fadetime>200</fadetime>
+                    <height>222</height>
+                    <aspectratio>scale</aspectratio>
+                </control>
+                <control type="textbox">
+                    <top>270</top>
+                    <left>40</left>
+                    <width>395</width>
+                    <height>300</height>
+                    <label>[B]$INFO[ListItem.Premiered][CR][CR][CR]$INFO[ListItem.Genre][/B]</label>
+                    <font>font12</font>
+                </control>
+                <control type="image">
+                    <left>40</left>
+                    <top>320</top>
+                    <width>135</width>
+                    <height>26</height>
+                    <animation effect="fade" start="100" end="60" time="0" condition="String.IsEmpty(ListItem.Rating)">Conditional</animation>
+                    <texture fallback="flags/stars/0.0.png">$INFO[ListItem.Rating,flags/stars/,.png]</texture>
+                </control>
+                <control type="textbox">
+                    <top>450</top>
+                    <left>40</left>
+                    <width>395</width>
+                    <height>392</height>
+                    <align>justify</align>
+                    <label fallback="416">$INFO[ListItem.Plot,,[CR][CR]  ]</label>
+                    <autoscroll delay="10000" time="1600" repeat="10000">true</autoscroll>
+                    <font>font12</font>
+                </control>
+                <control type="image">
+                    <left>1310</left>
+                    <top>20</top>
+                    <width>580</width>
+                    <height>834</height>
+                    <fadetime>200</fadetime>
+                    <bordertexture border="3">dialogs/back.png</bordertexture>
+                    <bordersize>10</bordersize>
+                    <texture>$INFO[ListItem.Thumb]</texture>
+                    <visible>Control.IsVisible(50)</visible>
+                </control>
+            </control>
+            <control type="group">
+                <control type="list" id="50">
+                    <left>440</left>
+                    <top>113</top>
+                    <width>854</width>
+                    <height>854</height>
+                    <viewtype label="535">list</viewtype>
+                    <pagecontrol>72</pagecontrol>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onleft>9000</onleft>
+                    <onright>72</onright>
+                    <onup>700</onup>
+                    <ondown>600</ondown>
+                    <orientation>vertical</orientation>
+                    <itemlayout width="854" height="122">
+                        <control type="image">
+                            <left>59</left>
+                            <top>9</top>
+                            <width>762</width>
+                            <height>102</height>
+                            <texture>dialogs/back.png</texture>
+                        </control>
+                        <control type="label">
+                            <left>80</left>
+                            <width>660</width>
+                            <height>67</height>
+                            <top>22</top>
+                            <align>left</align>
+                            <aligny>top</aligny>
+                            <font>font13</font>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <left>80</left>
+                            <width>660</width>
+                            <height>67</height>
+                            <top>62</top>
+                            <align>left</align>
+                            <aligny>top</aligny>
+                            <font>font12</font>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                        <control type="image">
+                            <width>50</width>
+                            <height>50</height>
+                            <top>37</top>
+                            <left>750</left>
+                            <texture>icons/extendedinfo/database.png</texture>
+                            <visible>!String.IsEmpty(ListItem.DBID)</visible>
+                        </control>
+                        <control type="group">
+                            <visible>!String.IsEmpty(ListItem.UserRating)</visible>
+                            <control type="group">
+                                <top>40</top>
+                                <left>794</left>
+                                <include>UserRatingCircle</include>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout width="854" height="122">
+                        <control type="image">
+                            <left>59</left>
+                            <top>9</top>
+                            <width>762</width>
+                            <height>102</height>
+                            <texture>dialogs/back.png</texture>
+                            <visible>!Control.HasFocus(50)</visible>
+                        </control>
+                        <control type="image">
+                            <left>39</left>
+                            <top>-9</top>
+                            <width>801</width>
+                            <height>140</height>
+                            <texture colordiffuse="$VAR[SkinColorVar]" border="40">buttons/button-fo.png</texture>
+                        </control>
+                        <control type="label">
+                            <left>80</left>
+                            <width>660</width>
+                            <height>67</height>
+                            <top>22</top>
+                            <align>left</align>
+                            <aligny>top</aligny>
+                            <font>font13</font>
+                            <scroll>true</scroll>
+                            <label>$INFO[ListItem.Label]</label>
+                        </control>
+                        <control type="label">
+                            <left>80</left>
+                            <width>660</width>
+                            <height>67</height>
+                            <top>62</top>
+                            <align>left</align>
+                            <aligny>top</aligny>
+                            <font>font12</font>
+                            <scroll>true</scroll>
+                            <label>$INFO[ListItem.Label2]</label>
+                        </control>
+                        <control type="image">
+                            <width>50</width>
+                            <height>50</height>
+                            <top>37</top>
+                            <left>750</left>
+                            <texture>icons/extendedinfo/database.png</texture>
+                            <visible>!String.IsEmpty(ListItem.DBID)</visible>
+                        </control>
+                        <control type="group">
+                            <visible>!String.IsEmpty(ListItem.UserRating)</visible>
+                            <control type="group">
+                                <top>40</top>
+                                <left>794</left>
+                                <include>UserRatingCircle</include>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="group">
+                <control type="panel" id="500">
+                    <left>440</left>
+                    <top>118</top>
+                    <width>1420</width>
+                    <height>850</height>
+                    <viewtype label="Wall">list</viewtype>
+                    <pagecontrol>72</pagecontrol>
+                    <scrolltime tween="cubic" easing="out">500</scrolltime>
+                    <onleft>9000</onleft>
+                    <onright>72</onright>
+                    <onup>700</onup>
+                    <ondown>600</ondown>
+                    <orientation>vertical</orientation>
+                    <preloaditems>2</preloaditems>
+                    <itemlayout width="350" height="425">
+                        <control type="group">
+                            <top>0</top>
+                            <left>80</left>
+                            <control type="image">
+                                <left>-15</left>
+                                <top>0</top>
+                                <width>300</width>
+                                <height>420</height>
+                                <bordertexture border="20">overlays/shadow.png</bordertexture>
+                                <bordersize>20</bordersize>
+                                <aspectratio aligny="top">stretch</aspectratio>
+                                <texture background="true" fallback="DefaultVideoCover.png">$INFO[ListItem.Thumb]</texture>
+                            </control>
+                            <control type="image">
+                                <width>55</width>
+                                <height>55</height>
+                                <top>20</top>
+                                <left>210</left>
+                                <texture colordiffuse="$VAR[SkinColorVar]">icons/extendedinfo/local.png</texture>
+                                <visible>!String.IsEmpty(ListItem.DBID)</visible>
+                            </control>
+                            <control type="image">
+                                <width>55</width>
+                                <height>55</height>
+                                <top>20</top>
+                                <left>210</left>
+                                <texture>icons/extendedinfo/local2.png</texture>
+                                <visible>!String.IsEmpty(ListItem.DBID)</visible>
+                            </control>
+                            <control type="group">
+                                <visible>!String.IsEmpty(ListItem.UserRating)</visible>
+                                <control type="group">
+                                    <top>-1</top>
+                                    <left>-23</left>
+                                    <include>UserRatingCircle</include>
+                                </control>
+                            </control>
+                        </control>
+                    </itemlayout>
+                    <focusedlayout width="350" height="425">
+                        <control type="group">
+                            <top>0</top>
+                            <left>80</left>
+                            <depth>DepthContentPopout</depth>
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="220,210" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="200" tween="sine" easing="inout" center="220,210" />
+                            </animation>
+                            <control type="image">
+                                <left>-15</left>
+                                <top>0</top>
+                                <width>300</width>
+                                <height>420</height>
+                                <bordertexture border="20">overlays/shadow.png</bordertexture>
+                                <bordersize>20</bordersize>
+                                <aspectratio aligny="top">stretch</aspectratio>
+                                <texture background="true" fallback="DefaultVideoCover.png">$INFO[ListItem.Thumb]</texture>
+                            </control>
+                            <control type="image">
+                                <width>55</width>
+                                <height>55</height>
+                                <top>20</top>
+                                <left>210</left>
+                                <texture colordiffuse="$VAR[SkinColorVar]">icons/extendedinfo/local.png</texture>
+                                <visible>!String.IsEmpty(ListItem.DBID)</visible>
+                            </control>
+                            <control type="image">
+                                <width>55</width>
+                                <height>55</height>
+                                <top>20</top>
+                                <left>210</left>
+                                <texture>icons/extendedinfo/local2.png</texture>
+                                <visible>!String.IsEmpty(ListItem.DBID)</visible>
+                            </control>
+                        </control>
+                        <control type="group">
+                            <left>73</left>
+                            <top>4</top>
+                            <animation effect="fade" start="0" end="100" time="200">Focus</animation>
+                            <animation effect="fade" start="100" end="0" time="0">Unfocus</animation>
+                            <visible>Control.HasFocus(500)</visible>
+                            <control type="image">
+                                <left>3</left>
+                                <top>349</top>
+                                <width>275</width>
+                                <height>57</height>
+                                <texture>colors/black.png</texture>
+                                <animation effect="fade" start="0" end="70" time="50">Focus</animation>
+                            </control>
+                            <control type="label">
+                                <left>13</left>
+                                <top>349</top>
+                                <width>258</width>
+                                <height>57</height>
+                                <scroll>true</scroll>
+                                <label>$INFO[ListItem.Label]</label>
+                                <font>font10</font>
+                                <shadowcolor>text_shadow</shadowcolor>
+                                <align>center</align>
+                                <aligny>center</aligny>
+                            </control>
+                            <control type="image">
+                                <left>3</left>
+                                <top>3</top>
+                                <width>278</width>
+                                <height>406</height>
+                                <texture border="8" colordiffuse="$VAR[SkinColorVar]">buttons/thumbnail_focused.png</texture>
+                            </control>
+                        </control>
+                        <control type="group">
+                            <animation type="Focus">
+                                <effect type="zoom" start="100" end="107" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <animation type="Unfocus">
+                                <effect type="zoom" start="107" end="100" time="200" tween="sine" easing="inout" center="110,130" />
+                            </animation>
+                            <visible>!String.IsEmpty(ListItem.UserRating)</visible>
+                            <top>0</top>
+                            <left>80</left>
+                            <control type="group">
+                                <top>-1</top>
+                                <left>-23</left>
+                                <include>UserRatingCircle</include>
+                            </control>
+                        </control>
+                    </focusedlayout>
+                </control>
+            </control>
+            <control type="button" id="600">
+                <onfocus>SetFocus(500)</onfocus>
+                <width>1</width>
+                <height>1</height>
+                <left>-1000</left>
+            </control>
+            <control type="button" id="700">
+                <onfocus>SetFocus(500)</onfocus>
+                <width>1</width>
+                <height>1</height>
+                <left>-1000</left>
+            </control>
+        </control>
+        <control type="group">
+            <top>0</top>
+            <control type="group">
+                <control type="button">
+                    <left>1157</left>
+                    <bottom>93</bottom>
+                    <width>48</width>
+                    <height>24</height>
+                    <texturefocus colordiffuse="$VAR[SkinColorVar]">overlays/arrowdown.png</texturefocus>
+                    <texturenofocus colordiffuse="$VAR[SkinColorVar]">overlays/arrowdown.png</texturenofocus>
+                    <animation effect="zoom" start="100,0" end="100,100" center="auto" time="200" delay="10">VisibleChange</animation>
+                    <animation effect="zoom" start="100,0" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
+                    <animation effect="zoom" start="100,100" end="100,0" center="auto" time="200">WindowClose</animation>
+                    <onclick>SetFocus(500)</onclick>
+                    <onclick>PageDown</onclick>
+                    <visible>!String.IsEmpty(Window.Property(ArrowDown)) | Container(500).HasNext</visible>
+                    <visible>Control.IsVisible(500)</visible>
+                </control>
+                <control type="button">
+                    <left>1157</left>
+                    <top>93</top>
+                    <width>48</width>
+                    <height>24</height>
+                    <texturefocus colordiffuse="$VAR[SkinColorVar]" flipy="true">overlays/arrowdown.png</texturefocus>
+                    <texturenofocus colordiffuse="$VAR[SkinColorVar]" flipy="true">overlays/arrowdown.png</texturenofocus>
+                    <animation effect="zoom" start="100,0" end="100,100" center="auto" time="200" delay="10">VisibleChange</animation>
+                    <animation effect="zoom" start="100,0" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
+                    <animation effect="zoom" start="100,100" end="100,0" center="auto" time="200">WindowClose</animation>
+                    <onclick>SetFocus(500)</onclick>
+                    <onclick>PageUp</onclick>
+                    <visible>!String.IsEmpty(Window.Property(ArrowUp)) | Container(500).HasPrevious</visible>
+                    <visible>Control.IsVisible(500)</visible>
+                </control>
+                <control type="button">
+                    <left>856</left>
+                    <bottom>86</bottom>
+                    <width>48</width>
+                    <height>24</height>
+                    <texturefocus colordiffuse="$VAR[SkinColorVar]">overlays/arrowdown.png</texturefocus>
+                    <texturenofocus colordiffuse="$VAR[SkinColorVar]">overlays/arrowdown.png</texturenofocus>
+                    <animation effect="zoom" start="100,0" end="100,100" center="auto" time="200" delay="10">VisibleChange</animation>
+                    <animation effect="zoom" start="100,0" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
+                    <animation effect="zoom" start="100,100" end="100,0" center="auto" time="200">WindowClose</animation>
+                    <onclick>SetFocus(50)</onclick>
+                    <onclick>PageDown</onclick>
+                    <visible>!String.IsEmpty(Window.Property(ArrowDown)) | Container(50).HasNext</visible>
+                    <visible>Control.IsVisible(50)</visible>
+                </control>
+                <control type="button">
+                    <left>856</left>
+                    <top>86</top>
+                    <width>48</width>
+                    <height>24</height>
+                    <texturefocus colordiffuse="$VAR[SkinColorVar]" flipy="true">overlays/arrowdown.png</texturefocus>
+                    <texturenofocus colordiffuse="$VAR[SkinColorVar]" flipy="true">overlays/arrowdown.png</texturenofocus>
+                    <animation effect="zoom" start="100,0" end="100,100" center="auto" time="200" delay="10">VisibleChange</animation>
+                    <animation effect="zoom" start="100,0" end="100,100" delay="500" center="auto" time="200">WindowOpen</animation>
+                    <animation effect="zoom" start="100,100" end="100,0" center="auto" time="200">WindowClose</animation>
+                    <onclick>SetFocus(50)</onclick>
+                    <onclick>PageUp</onclick>
+                    <visible>!String.IsEmpty(Window.Property(ArrowUp)) | Container(50).HasPrevious</visible>
+                    <visible>Control.IsVisible(50)</visible>
+                </control>
+            </control>
+            <!--<control type="group"><animation type="WindowOpen" reversible="false"><effect type="slide" start="-200" end="0" delay="1000" tween="sine" time="500" /><effect type="slide" start="0" end="-200" delay="3000" tween="sine" time="500" /></animation><animation effect="fade" start="100" end="0" time="0">WindowClose</animation><control type="image"><texture flipx="true">overlays/arrowright.png</texture><left>20</left><top>1050</top><width>25</width><height>25</height></control><control type="label"><left>60</left><top>1045</top><height>30</height><aligny>center</aligny><width>1920</width><align>left</align><font>font10</font><label>$ADDON[script.extendedinfo 32023]</label></control></control>-->
+        </control>
+        <control type="group">
+            <animation effect="slide" start="-460" end="0" time="320" easing="out" tween="cubic">Visible</animation>
+            <animation effect="slide" start="0" end="-460" time="320" easing="in" tween="cubic">Hidden</animation>
+            <visible allowhiddenfocus="true">ControlGroup(9000).HasFocus | Control.HasFocus(6000) | Control.HasFocus(6001) | Control.HasFocus(7000)</visible>
+            <left>0</left>
+            <animation effect="slide" start="0" end="-460" time="320" tween="cubic">WindowClose</animation>
+            <control type="image">
+                <top>78</top>
+                <left>0</left>
+                <width>484</width>
+                <height>922</height>
+                <texture>lists/panel.png</texture>
+            </control>
+            <control type="radiobutton" id="6000">
+                <label>$LOCALIZE[19140]</label>
+                <left>100</left>
+                <top>70</top>
+                <width>330</width>
+                <height>110</height>
+                <textoffsetx>40</textoffsetx>
+                <textoffsety>35</textoffsety>
+                <textwidth>315</textwidth>
+                <align>left</align>
+                <aligny>top</aligny>
+                <texturefocus border="23" colordiffuse="$VAR[SkinColorVar]">buttons/button-fo.png</texturefocus>
+                <texturenofocus border="23">buttons/button-nofo.png</texturenofocus>
+                <font>font13</font>
+                <ondown>SetFocus(7000)</ondown>
+                <onright>50</onright>
+                <radiowidth>46</radiowidth>
+                <radioposx>250</radioposx>
+                <textureradioonnofocus>icons/search.png</textureradioonnofocus>
+                <textureradioonfocus>icons/search.png</textureradioonfocus>
+                <textureradiooffnofocus>icons/search.png</textureradiooffnofocus>
+                <textureradioofffocus>icons/search.png</textureradioofffocus>
+                <onleft>6001</onleft>
+            </control>
+            <control type="button" id="6001">
+                <label>$LOCALIZE[40110]</label>
+                <left>0</left>
+                <top>70</top>
+                <width>130</width>
+                <height>110</height>
+                <textoffsetx>40</textoffsetx>
+                <textoffsety>35</textoffsety>
+                <textwidth>130</textwidth>
+                <align>center</align>
+                <aligny>top</aligny>
+                <onclick>Container.NextViewMode</onclick>
+                <texturefocus border="23" colordiffuse="$VAR[SkinColorVar]">buttons/button-fo.png</texturefocus>
+                <texturenofocus border="23">buttons/button-nofo.png</texturenofocus>
+                <font>font13</font>
+                <ondown>SetFocus(7000)</ondown>
+                <onright>6000</onright>
+                <onleft>500</onleft>
+            </control>
+            <control type="radiobutton" id="7000">
+                <left>0</left>
+                <top>165</top>
+                <width>430</width>
+                <height>140</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <ondown>9000</ondown>
+                <onup>6000</onup>
+                <onright>500</onright>
+                <onleft>500</onleft>
+                <textoffsetx>40</textoffsetx>
+                <textoffsety>25</textoffsety>
+                <font>font13</font>
+                <textwidth>315</textwidth>
+                <label></label>
+                <focusedcolor>$VAR[SkinColorVar]</focusedcolor>
+                <radiowidth>200</radiowidth>
+                <radioheight>180</radioheight>
+                <radioposx>130</radioposx>
+                <textureradioonnofocus>icons/extendedinfo/moviedb.png</textureradioonnofocus>
+                <textureradioonfocus>icons/extendedinfo/moviedb.png</textureradioonfocus>
+                <textureradiooffnofocus>icons/extendedinfo/moviedb.png</textureradiooffnofocus>
+                <textureradioofffocus>icons/extendedinfo/moviedb.png</textureradioofffocus>
+                <texturefocus colordiffuse="$VAR[SkinColorVar]">lists/focus.png</texturefocus>
+                <texturenofocus border="20">lists/separator.png</texturenofocus>
+            </control>
+            <control type="grouplist" id="9000">
+                <top>310</top>
+                <width>430</width>
+                <height>680</height>
+                <orientation>vertical</orientation>
+                <scroll>true</scroll>
+                <itemgap>0</itemgap>
+                <onup>7000</onup>
+                <ondown>9000</ondown>
+                <onright>500</onright>
+                <onleft>500</onleft>
+                <onback>500</onback>
+                <control type="button" id="5007">
+                    <label>$LOCALIZE[467] :</label>
+                    <label2>$INFO[Window.Property(Type)]</label2>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5001">
+                    <onup>6000</onup>
+                    <label>$ADDON[script.extendedinfo 32104]</label>
+                    <label2>$INFO[Window.Property(Sort_Label)]</label2>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5004">
+                    <label>$ADDON[script.extendedinfo 32128]</label>
+                    <label2>$INFO[Window.Property(Order_Label)]</label2>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="label" id="5333">
+                    <include>MediaMenuLabelCommon</include>
+                    <label>$ADDON[script.extendedinfo 32023]</label>
+                </control>
+                <control type="button" id="5002">
+                    <label>$LOCALIZE[515]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5003">
+                    <label>$LOCALIZE[172]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5006">
+                    <label>$ADDON[script.extendedinfo 32127]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5008">
+                    <label>$ADDON[script.extendedinfo 32126]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5009">
+                    <label>$ADDON[script.extendedinfo 32114]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5010">
+                    <label>$LOCALIZE[572]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5012">
+                    <label>$ADDON[script.extendedinfo 32111]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+                <control type="button" id="5005">
+                    <label>$ADDON[script.extendedinfo 32022]</label>
+                    <include>MediaMenuItemsCommon</include>
+                </control>
+            </control>
+        </control>
+        <include content="TopBar">
+            <param name="breadcrumbs_label" value="$INFO[Window.Property(Filter_Label)]" />
+            <param name="breadcrumbs_icon" value="icons/settings/search.png" />
+        </include>
+        <include content="BottomBar">
+            <param name="info_visible" value="true" />
+        </include>
+        <control type="group">
+            <top>1019</top>
+            <control type="button">
+                <left>17</left>
+                <width>44</width>
+                <height>44</height>
+                <texturefocus colordiffuse="$VAR[SkinColorVar]">frame/menu-nofo.png</texturefocus>
+                <texturenofocus colordiffuse="$VAR[SkinColorVar]">frame/menu-nofo.png</texturenofocus>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <onclick>SetFocus(9000)</onclick>
+                <visible>!Skin.HasSetting(KioskMode) + !ControlGroup(9000).HasFocus</visible>
+            </control>
+            <control type="button">
+                <left>74</left>
+                <width>300</width>
+                <height>44</height>
+                <shadowcolor>text_shadow</shadowcolor>
+                <label>$LOCALIZE[33063]</label>
+                <onclick>SetFocus(9000)</onclick>
+                <texturefocus></texturefocus>
+                <texturenofocus></texturenofocus>
+                <animation effect="fade" time="225">VisibleChange</animation>
+                <visible>!Skin.HasSetting(KioskMode) + !ControlGroup(9000).HasFocus</visible>
+            </control>
+            <control type="image">
+                <left>17</left>
+                <width>44</width>
+                <height>44</height>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/menu-fo.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <visible>ControlGroup(9000).HasFocus</visible>
+            </control>
+        </control>
+        <control type="grouplist">
+            <animation effect="fade" start="0" end="100" time="400">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="300">WindowClose</animation>
+            <orientation>horizontal</orientation>
+            <align>right</align>
+            <top>1015</top>
+            <right>24</right>
+            <width>1200</width>
+            <itemgap>10</itemgap>
+            <control type="label">
+                <width>auto</width>
+                <height>48</height>
+                <aligny>center</aligny>
+                <align>right</align>
+                <shadowcolor>text_shadow</shadowcolor>
+                <label>$INFO[Window.Property(TotalItems),, $ADDON[script.extendedinfo 32124]]$INFO[Window.Property(CurrentPage),[COLOR FFBBBBBB] - [/COLOR]$ADDON[script.extendedinfo 32125] ]$INFO[Window.Property(TotalPages), / ]</label>
+            </control>
+            <control type="image">
+                <width>54</width>
+                <height>44</height>
+                <aspectratio>keep</aspectratio>
+                <texture colordiffuse="$VAR[SkinColorVar]">frame/item-count.png</texture>
+                <animation effect="fade" time="200">VisibleChange</animation>
+                <visible>!String.IsEmpty(Window.Property(CurrentPage))</visible>
+                <animation effect="fade" start="100" end="0" time="250" delay="200" reversible="true" condition="Control.IsVisible(23000)">Conditional</animation>
+                <animation effect="fade" start="0" end="100" time="250" reversible="true" delay="200" condition="!Control.IsVisible(23000)">Conditional</animation>
+            </control>
+        </control>
+    </controls>
+</window>
