@@ -664,6 +664,8 @@ def ResetDatabase(updater=False):
 			update = False
 		else:
 			update = True
+		if osAndroid:
+			update = True
 		if updater == True:
 			update = True
 		if update == True:
