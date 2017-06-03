@@ -13,6 +13,7 @@
         <setting label="50118" id="PostScript" type="executable" enable="eq(-1,true)"/>
 		<setting label="Show Games Without Artwork" id="NoArtworkEnabled" type="bool" default="true"/>
 		<setting label="Show Update Notifications" id="UpdateEnabled" type="bool" default="true"/>
+		<setting label="Check If Game Exists" id="CheckExists" type="bool" default="false"/>
     </category>
     <category label="50100">
         <setting label="50110" id="DelUserScript" type="bool" default="false"/>

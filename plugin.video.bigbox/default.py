@@ -53,6 +53,7 @@ preScriptEnabled = addon.getSetting("PreScriptEnabled")
 preScript = addon.getSetting("PreScript").decode("utf-8")
 postScriptEnabled = addon.getSetting("PostScriptEnabled")
 NoArtworkEnabled = addon.getSetting("NoArtworkEnabled")
+CheckRomExists = addon.getSetting("CheckExists")
 UpdateEnabled = addon.getSetting("UpdateEnabled")
 postScript = addon.getSetting("PostScript").decode("utf-8")
 osWin = xbmc.getCondVisibility('system.platform.windows')
@@ -928,8 +929,15 @@ def ResetDatabase(updater=False):
 				sql = "delete FROM games\
 					WHERE Platform = '%s' and Title = '%s'" % (platform, gamename)
 				c.execute(sql)
-				DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video)
-				c.execute("INSERT INTO games VALUES('" + DataString + "')")
+				if CheckRomExists == 'true':
+					if os.path.isfile(actualpath):
+				
+						DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video)
+						c.execute("INSERT INTO games VALUES('" + DataString + "')")
+				else:
+					DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video)
+					c.execute("INSERT INTO games VALUES('" + DataString + "')")
+					
 			c.execute("INSERT INTO updatelog VALUES('"+ platform + "','" + datemodded + "')")
 			
 			myemulators = steamWin.replace("BigBox.exe","") + "Data" + os.sep + "Emulators.xml" 
