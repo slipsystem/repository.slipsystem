@@ -930,7 +930,7 @@ def ResetDatabase(updater=False):
 					WHERE Platform = '%s' and Title = '%s'" % (platform, gamename)
 				c.execute(sql)
 				if CheckRomExists == 'true':
-					rompath = actualpath..replace("''","'")
+					rompath = actualpath.replace("''","'")
 					if os.path.isfile(rompath):
 				
 						DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video)
