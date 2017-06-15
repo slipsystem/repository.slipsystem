@@ -13,6 +13,7 @@ import xbmcaddon
 import re
 import sqlite3
 import ConfigParser
+import unicodedata
 import xml.etree.ElementTree as ET
 from os import listdir
 from os.path import isfile, join
@@ -267,8 +268,13 @@ def programFileCheck(steamExe, xbmcExe):
 			nothing = ''
 			
 		try:
+			c.execute('''ALTER TABLE games ADD COLUMN
+				ID text''')
+		except:
+			nothing = ''
+		try:
 			c.execute('''CREATE TABLE games
-				(Title text, ApplicationPath text, Platform text, Emulator text,LastPlayedDate text,DateAdded text,Notes text, ReleaseDate text, Icon text, Fanart text, Completed text, Favorite text, Rating text, Genre text, Banner text, Logo text, Videos text)''')
+				(Title text, ApplicationPath text, Platform text, Emulator text,LastPlayedDate text,DateAdded text,Notes text, ReleaseDate text, Icon text, Fanart text, Completed text, Favorite text, Rating text, Genre text, Banner text, Logo text, Videos text,ID text)''')
 		except:
 			nothing = "nothing"
 		try:
@@ -556,7 +562,7 @@ def ResetDatabase(updater=False):
 	c = conn.cursor()
 	try:
 		c.execute('''CREATE TABLE games
-             (Title text, ApplicationPath text, Platform text, Emulator text,LastPlayedDate text,DateAdded text,Notes text, ReleaseDate text, Icon text, Fanart text, Completed text, Favorite text, Rating text, Genre text, Banner text, Logo text, Videos text)''')
+             (Title text, ApplicationPath text, Platform text, Emulator text,LastPlayedDate text,DateAdded text,Notes text, ReleaseDate text, Icon text, Fanart text, Completed text, Favorite text, Rating text, Genre text, Banner text, Logo text, Videos text,ID text)''')
 	except:
 		nothing = "nothing"
 	try:
@@ -687,6 +693,11 @@ def ResetDatabase(updater=False):
 				except:
 					gamename = "NULL"
 				try:
+					gamename = strip_accents(gamename)
+					
+				except:
+					gamename = gamename
+				try:
 					gamepath = title.find('ApplicationPath').text
 					try: 
 						gamepath = gamepath.replace("'","''")
@@ -702,6 +713,15 @@ def ResetDatabase(updater=False):
 						platform = "NULL"
 				except:
 					platform = "NULL"
+					
+				try:
+					gameid = title.find('ID').text
+					try:
+						gameid = gameid .replace("'","''")
+					except:
+						gameid = "NULL"
+				except:
+					gameid = "NULL"
 				try:
 					lastplayed = title.find('LastPlayedDate').text
 					try:
@@ -735,7 +755,12 @@ def ResetDatabase(updater=False):
 						Discription = "No Game Information Found"
 				except:
 					Discription = "No Game Information Found"
-		
+				
+				try:
+					Discription = strip_accents(Discription)
+				except:
+					Discription = Discription
+				
 				try:
 					Year = title.find('ReleaseDate').text
 					try:
@@ -933,10 +958,10 @@ def ResetDatabase(updater=False):
 					rompath = actualpath.replace("''","'")
 					if os.path.isfile(rompath):
 				
-						DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video)
+						DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video + "','" + gameid)
 						c.execute("INSERT INTO games VALUES('" + DataString + "')")
 				else:
-					DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video)
+					DataString = (gamename + "','" + actualpath  + "','" + platform + "','" + Emulator + "','" + lastplayed[0:10] + "','" + dateadded[0:10] + "','" + Discription + "','" + Year[0:10] + "','" + icon + "','" + fanart + "','"  + Completed + "','" + Favorite + "','" + Rating + "','" + Genre + "','" + banner + "','" + clearlogo + "','" + video + "','" + gameid)
 					c.execute("INSERT INTO games VALUES('" + DataString + "')")
 					
 			c.execute("INSERT INTO updatelog VALUES('"+ platform + "','" + datemodded + "')")
@@ -1012,8 +1037,9 @@ def ResetDatabase(updater=False):
 			c.execute(sql)
 			DataString = (emuidl + "','" + actualemupath + "','" + commandb)
 			c.execute("INSERT INTO emulators VALUES('" + DataString + "')")
-		c.execute("delete from platforms where Title not in (select Platform from games)")
 			
+	conn.commit()
+	c.execute("delete from platforms where Title not in (select Platform from games)")
 	conn.commit()
 	conn.close()
 	dialog.ok("BigBox","Update Complete")
@@ -1116,7 +1142,7 @@ def GameListGenre(Genre):
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1151,7 +1177,7 @@ def GameListPlatform(Platform):
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1185,7 +1211,7 @@ def search_game(query):
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1214,7 +1240,7 @@ def GameListLastAdded():
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1245,7 +1271,7 @@ def GameListFavorite():
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1274,7 +1300,7 @@ def GameListLastPlayed():
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1304,7 +1330,7 @@ def GameListRandom():
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1330,7 +1356,7 @@ def GameRandomPlay():
 	results = c.fetchall()
 	for row in results:
 		name = row[0]
-		ApplicationPath = row[1]
+		ApplicationPath = row[17]
 		Platform = row[2]
 		Emulator = row[3]
 		LastPlayed = row[4]
@@ -1358,7 +1384,7 @@ def search():
 	
 	
 def LaunchGame(url):
-	gamepath = re.findall("ApplicationPath="+"(.*)"+"&Platform=",url)[0]
+	gameid = re.findall("ApplicationPath="+"(.*)"+"&Platform=",url)[0]
 	emulator = re.findall("&Emulator="+"(.*)"+"",url)[0]
 	platform = re.findall("&Platform="+"(.*)"+"&Emulator=",url)[0]
 	DatabasePath = os.path.join(getAddonDataPath(), 'database.db')
@@ -1371,7 +1397,8 @@ def LaunchGame(url):
 		ApplicationPath =  results[0][1]
 	except:
 		ApplicationPath = ""
-		
+	
+	
 	try:
 		ApplicationPathFixed = '"' + results[0][1] + '"'
 	except:
@@ -1381,7 +1408,15 @@ def LaunchGame(url):
 		Commanda = results[0][2]
 	except:
 		Commanda =""
-		
+	
+	
+	sqlgame = "select * from games where ID = '%s'" % (gameid)
+	c.execute(sqlgame)
+	resultgame = c.fetchall()
+	try:
+		gamepath =  resultgame[0][1]
+	except:
+		gamepath = "null"
 	sqlb = "select CommandLine from emulatorcommands where Emulator = '%s' and Platform = '%s'" % (emulator,platform)
 	c.execute(sqlb)
 	resultsb = c.fetchall()
@@ -1500,7 +1535,10 @@ def LaunchGame(url):
 
 	
 	
-
+def strip_accents(string, accents=('COMBINING ACUTE ACCENT', 'COMBINING GRAVE ACCENT', 'COMBINING TILDE')):
+    accents = set(map(unicodedata.lookup, accents))
+    chars = [c for c in unicodedata.normalize('NFD', string) if c not in accents]
+    return unicodedata.normalize('NFC', ''.join(chars))
 		
 log('****Running Steam-Launcher v%s....' % addonVersion)
 log('running on osAndroid, osOsx, osLinux, osWin: %s %s %s %s ' % (osAndroid, osOsx, osLinux, osWin))
