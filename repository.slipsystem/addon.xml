@@ -1,12 +1,19 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.slipsystem" name="Slipsystem Add-ons" version="1.0.0" provider-name="slipsystem">
-    <extension point="xbmc.addon.repository" name="Slipsystem Add-ons">
-        <info compressed="true">https://github.com/slipsystem/repository.slipsystem/raw/master/addons.xml</info>
-        <checksum>https://github.com/slipsystem/repository.slipsystem/raw/master/addons.xml.md5</checksum>
-        <datadir zip="true">https://github.com/slipsystem/repository.slipsystem/raw/master/</datadir>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Slipsystem Add-ons</summary>
-        <platform>all</platform>
-    </extension>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.slipsystem" name="Slipsystem Add-ons" version="1.0.4" provider-name="slipsystem">
+	<extension point="xbmc.addon.repository" name="Slipsystem Morris Add-ons">
+		<dir minversion="18.0.0">
+			<info compressed="false">https://github.com/slipsystem/repository.slipsystem/raw/master/addons.xml</info>
+			<checksum>https://github.com/slipsystem/repository.slipsystem/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://github.com/slipsystem/repository.slipsystem/raw/master/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">Zach Morris Add-ons</summary>
+		<description>Slipsystem Add-ons</description>
+		<platform>all</platform>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
 </addon>
