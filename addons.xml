@@ -190,7 +190,7 @@ For a complete view of changes visit https://github.com/b-jesch/skin.estuary.mod
 </addon>
 
 
-<addon id="repository.slipsystem" name="Slipsystem Add-ons" version="1.0.8" provider-name="slipsystem">
+<addon id="repository.slipsystem" name="Slipsystem Add-ons" version="1.0.4" provider-name="slipsystem">
     <extension point="xbmc.addon.repository" name="SlipSystem Add-ons">
         <info compressed="true">https://github.com/slipsystem/repository.slipsystem/raw/master/addons.xml</info>
         <checksum>https://github.com/slipsystem/repository.slipsystem/raw/master/addons.xml.md5</checksum>
