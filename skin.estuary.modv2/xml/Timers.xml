@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timers>
+	<timer>
+		<name>splashtimer</name>
+		<description>Timer for displaying the splash screen while skin starts up</description>
+		<start reset="true">Window.IsActive(startup) + !Skin.HasSetting(EnableSplashScreen)</start>
+		<stop>!Window.IsActive(startup) | Integer.IsGreaterOrEqual(Skin.TimerElapsedSecs(splashtimer),3)</stop>
+		<onstop>ReplaceWindow($INFO[System.StartupWindow])</onstop>
+	</timer>
+	<timer>
+		<name>delayedstoptimer</name>
+		<description>Stop player after an amount of time when media is paused</description>
+		<start reset="true">Player.Paused + [String.IsEqual(Skin.String(autostop_osd),31649) | String.IsEqual(Skin.String(autostop_osd),31650) | String.IsEqual(Skin.String(autostop_osd),31651) | String.IsEqual(Skin.String(autostop_osd),31652) | String.IsEqual(Skin.String(autostop_osd),31653)]</start>
+		<stop>Player.Paused + [Integer.IsGreater(Skin.TimerElapsedSecs(delayedstoptimer),60) + String.IsEqual(Skin.String(autostop_osd),31649)] | [Integer.IsGreater(Skin.TimerElapsedSecs(delayedstoptimer),120) + String.IsEqual(Skin.String(autostop_osd),31650)] | [Integer.IsGreater(Skin.TimerElapsedSecs(delayedstoptimer),180) + String.IsEqual(Skin.String(autostop_osd),31651)] | [Integer.IsGreater(Skin.TimerElapsedSecs(delayedstoptimer),240) + String.IsEqual(Skin.String(autostop_osd),31652)] | [Integer.IsGreater(Skin.TimerElapsedSecs(delayedstoptimer),300) + String.IsEqual(Skin.String(autostop_osd),31653)]</stop>
+		<reset>Player.Playing | Pvr.IsPlayingTV | Pvr.IsPlayingRecording</reset>
+		<onstop>PlayerControl(Stop)</onstop>
+	</timer>
+	<timer>
+		<name>dialogtempotimer</name>
+		<description>Close tempo menu after an amount of time</description>
+		<start reset="true">Window.IsVisible(1108)</start>
+		<stop>Window.IsVisible(1108) + Integer.IsGreater(Skin.TimerElapsedSecs(dialogtempotimer),8) + System.IdleTime(8)</stop>
+		<reset>!Window.isVisible(1108)</reset>
+		<onstop>Dialog.close(all)</onstop>
+	</timer>
+	<timer>
+		<name>fullscreenresolutioninfotimer</name>
+		<description>Shows videoresolution (HDR, HLG, DV) Info on start</description>
+		<start reset="true">Window.IsVisible(1111)</start>
+		<stop>Window.IsVisible(1111) + [Integer.IsGreater(Skin.TimerElapsedSecs(fullscreenresolutioninfotimer),5) + String.IsEqual(Skin.String(show_videoresolution),31581)] | [Integer.IsGreater(Skin.TimerElapsedSecs(fullscreenresolutioninfotimer),7) + String.IsEqual(Skin.String(show_videoresolution),31582)] | [Integer.IsGreater(Skin.TimerElapsedSecs(fullscreenresolutioninfotimer),10) + String.IsEqual(Skin.String(show_videoresolution),31583)] | [Integer.IsGreater(Skin.TimerElapsedSecs(fullscreenresolutioninfotimer),15) + String.IsEqual(Skin.String(show_videoresolution),31584)]</stop>
+		<reset>!Window.IsVisible(1111)</reset>
+		<onstop>Dialog.Close(1111)</onstop>
+	</timer>
+</timers>

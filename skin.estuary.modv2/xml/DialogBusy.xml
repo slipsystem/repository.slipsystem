@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window>
+	<animation effect="fade" end="100" time="560">WindowOpen</animation>
+	<animation effect="fade" start="100" end="0" time="240">WindowClose</animation>
+	<controls>
+		<control type="group">
+			<visible>String.IsEmpty(Window(Home).Property(script.preshowexperience.running))</visible>
+			<animation effect="fade" time="400">VisibleChange</animation>
+			<visible>!Window.IsActive(startup) + !Window.IsVisible(1111) + !Player.Caching</visible>
+			<control type="image">
+				<texture>colors/black.png</texture>
+				<include>FullScreenDimensions</include>
+				<animation effect="fade" start="100" end="70" time="0" condition="true">Conditional</animation>
+				<animation effect="fade" start="100" end="0" time="240" condition="Window.IsVisible(fullscreenvideo) | Window.IsVisible(FullscreenGame)">Conditional</animation>
+			</control>
+			<control type="group">
+				<depth>DepthMax</depth>
+				<centerleft>50%</centerleft>
+				<centertop>50%</centertop>
+				<include condition="String.IsEmpty(Skin.String(spinner_type)) | String.IsEqual(Skin.String(spinner_type),1)" content="BusySpinner">
+					<param name="outerSpeed" value="200" />
+					<param name="innerSpeed" value="200" />
+					<param name="outerMovement" value="-45" />
+					<param name="innerMovement" value="45" />
+					<param name="delay" value="600" />
+				</include>
+				<include condition="String.IsEqual(Skin.String(spinner_type),2)" content="BusySpinner">
+					<param name="outerMovement" value="-360" />
+					<param name="innerMovement" value="360" />
+				</include>
+				<include condition="String.IsEqual(Skin.String(spinner_type),3)" content="BusySpinner">
+					<param name="outerSpeed" value="1500" />
+					<param name="outerMovement" value="-360" />
+					<param name="innerVisibility" value="false" />
+				</include>
+				<include condition="String.IsEqual(Skin.String(spinner_type),4)" content="BusySpinner">
+					<param name="outerSize" value="100" />
+					<param name="innerSize" value="55" />
+				</include>
+				<include condition="String.IsEqual(Skin.String(spinner_type),5)" content="BusySpinner">
+					<param name="outerSize" value="100" />
+					<param name="innerSize" value="60" />
+					<param name="innerMovement" value="-360" />
+					<param name="outerSpeed" value="2000" />
+				</include>
+				<control type="image">
+					<centerleft>50%</centerleft>
+					<centertop>50%</centertop>
+					<width>30</width>
+					<height>30</height>
+					<texture colordiffuse="$VAR[SkinColorVar]">$INFO[Control.GetLabel(10),dialogs/volume/progress/p,.png]</texture>
+				</control>
+				<control type="progress" id="10">
+					<include>HiddenObject</include>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window type="dialog" id="1105">
+	<defaultcontrol always="true">5000</defaultcontrol>
+	<include>Animation_DialogPopupOpenClose</include>
+	<controls>
+		<control type="group">
+			<centerleft>50%</centerleft>
+			<width>800</width>
+			<centertop>50%</centertop>
+			<height>860</height>
+			<include content="DialogBackgroundCommons">
+				<param name="width" value="800" />
+				<param name="height" value="780" />
+				<param name="header_label" value="$LOCALIZE[5]" />
+				<param name="header_id" value="" />
+			</include>
+			<control type="group">
+				<left>0</left>
+				<top>80</top>
+				<control type="grouplist" id="5000">
+					<width>800</width>
+					<height>780</height>
+					<itemgap>0</itemgap>
+					<onup>5000</onup>
+					<ondown>5000</ondown>
+					<orientation>vertical</orientation>
+					<control type="button" id="5001">
+						<label>$LOCALIZE[31613]</label>
+						<include>DefaultSettingButton</include>
+						<label2>$VAR[OsdMusicMediaTimeVar]</label2>
+						<description>display media time on osd</description>
+						<onclick condition="String.IsEmpty(Skin.String(OsdMusicMediaTime))">Skin.SetString(OsdMusicMediaTime,1)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(OsdMusicMediaTime),0)">Skin.SetString(OsdMusicMediaTime,1)</onclick>
+						<onclick condition="String.IsEqual(Skin.String(OsdMusicMediaTime),1)">Skin.SetString(OsdMusicMediaTime,0)</onclick>
+					</control>
+					<control type="radiobutton" id="5002">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>$LOCALIZE[31163]</label>
+						<onclick>Skin.ToggleSetting(hide_background_fanart)</onclick>
+						<selected>!Skin.HasSetting(hide_background_fanart)</selected>
+					</control>
+					<control type="radiobutton" id="5009">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>$LOCALIZE[31283]</label>
+						<onclick>Skin.ToggleSetting(enable_visualisation)</onclick>
+						<selected>Skin.HasSetting(enable_visualisation)</selected>
+					</control>
+					<control type="radiobutton" id="50011">
+						<width>800</width>
+						<label>$LOCALIZE[31287]</label>
+						<include>DialogSettingButton</include>
+						<selected>!Skin.HasSetting(show_disc)</selected>
+						<onclick>Skin.ToggleSetting(show_disc)</onclick>
+					</control>
+					<control type="button" id="5004">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>$LOCALIZE[250]</label>
+						<label2>[B]$INFO[Visualisation.Name][/B]</label2>
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick>SendClick(500)</onclick>
+					</control>
+					<control type="button" id="5005">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>  ∟$LOCALIZE[31084]</label>
+						<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
+					</control>
+					<control type="button" id="5006">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>$LOCALIZE[31068]</label>
+						<onclick>ActivateWindow(visualisationpresetlist)</onclick>
+						<visible>Visualisation.HasPresets</visible>
+					</control>
+					<control type="radiobutton" id="5007">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>$LOCALIZE[31637]</label>
+						<onclick condition="System.HasAddon(script.cu.lrclyrics)">Skin.ToggleSetting(enable_lyrics)</onclick>
+						<onclick>Dialog.Close(all)</onclick>
+						<onclick condition="System.HasAddon(script.cu.lrclyrics) + Skin.HasSetting(enable_lyrics)">RunScript(skin.estuary.modv2,toggleAddonStatus,script.cu.lrclyrics,false)</onclick>
+						<onclick condition="System.HasAddon(script.cu.lrclyrics) + !Skin.HasSetting(enable_lyrics) + !Window.IsActive(script-cu-lrclyrics-main.xml)">RunScript(skin.estuary.modv2,toggleAddonStatus,script.cu.lrclyrics,true)</onclick>
+						<enable>!Window.IsActive(script-cu-lrclyrics-main.xml)</enable>
+						<selected>Skin.HasSetting(enable_lyrics) | Window.IsActive(script-cu-lrclyrics-main.xml)</selected>
+					</control>
+					<control type="radiobutton" id="50013">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>  ∟$LOCALIZE[31379]</label>
+						<onclick>Skin.ToggleSetting(enable_animatedlyrics)</onclick>
+						<selected>!Skin.HasSetting(enable_animatedlyrics)</selected>
+						<visible>!String.IsEmpty(Skin.String(LyricScript_Path))</visible>
+						<enable>System.AddonIsEnabled(script.cu.lrclyrics)</enable>
+					</control>
+					<control type="radiobutton" id="50010">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>  ∟$LOCALIZE[31363]</label>
+						<onclick>Skin.ToggleSetting(Alt_color.lyrics)</onclick>
+						<selected>Skin.HasSetting(Alt_color.lyrics)</selected>
+						<visible>!String.IsEmpty(Skin.String(LyricScript_Path)) + !Skin.HasSetting(enable_animatedlyrics)</visible>
+						<enable>System.AddonIsEnabled(script.cu.lrclyrics)</enable>
+					</control>
+					<control type="button" id="5008">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>  ∟$LOCALIZE[31083]</label>
+						<onclick>Addon.OpenSettings($INFO[Skin.String(LyricScript_Path)])</onclick>
+						<visible>!String.IsEmpty(Skin.String(LyricScript_Path))</visible>
+						<enable>System.AddonIsEnabled(script.cu.lrclyrics)</enable>
+					</control>
+					<control type="radiobutton" id="50014">
+						<width>800</width>
+						<include>DialogSettingButton</include>
+						<label>$LOCALIZE[31431]</label>
+						<onclick>Skin.ToggleSetting(enable_scrollingtext)</onclick>
+						<selected>!Skin.HasSetting(enable_scrollingtext)</selected>
+					</control>
+				</control>
+			</control>
+		</control>
+	</controls>
+</window>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+	<include>Animation_DialogPopupOpenClose</include>
+	<controls>
+		<control type="group">
+			<centertop>50%</centertop>
+			<centerleft>50%</centerleft>
+			<width>1320</width>
+			<height>710</height>
+			<include>Animation_DialogPopupVisible</include>
+			<include content="DialogBackgroundCommons">
+				<param name="width" value="1320" />
+				<param name="height" value="710" />
+				<param name="header_id" value="2" />
+			</include>
+			<control type="image">
+				<top>170</top>
+				<left>20</left>
+				<width>300</width>
+				<height>450</height>
+				<align>center</align>
+				<aligny>bottom</aligny>
+				<aspectratio>keep</aspectratio>
+				<texture fallback="DefaultVideo.png" background="true">$VAR[VideoVersionPosterVar]</texture>
+			</control>
+			<control type="group" id="100">
+				<top>90</top>
+				<left>320</left>
+				<control type="image">
+					<top>0</top>
+					<left>0</left>
+					<width>680</width>
+					<bottom>120</bottom>
+					<texture border="21">dialogs/dialog-bg.png</texture>
+				</control>
+				<control type="list" id="50">
+					<description>version list</description>
+					<top>20</top>
+					<left>20</left>
+					<bottom>130</bottom>
+					<onup>50</onup>
+					<ondown>50</ondown>
+					<onleft>200</onleft>
+					<onright>60</onright>
+					<pagecontrol>60</pagecontrol>
+					<scrolltime>200</scrolltime>
+					<include content="DefaultSimpleListLayout">
+						<param name="width" value="640" />
+						<param name="height" value="80" />
+						<param name="list_id" value="50" />
+						<param name="align" value="left" />
+					</include>
+				</control>
+				<control type="scrollbar" id="60">
+					<left>660</left>
+					<top>20</top>
+					<width>12</width>
+					<bottom>130</bottom>
+					<onleft>50</onleft>
+					<onright>101</onright>
+					<orientation>vertical</orientation>
+				</control>
+				<control type="label">
+					<visible>Control.HasFocus(50)</visible>
+					<align>left</align>
+					<top>505</top>
+					<left>20</left>
+					<width>940</width>
+					<height>40</height>
+					<scroll>true</scroll>
+					<font>font20_title</font>
+					<textcolor>99FFFFFF</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<haspath>false</haspath>
+					<label>$VAR[VideoVersionFileVar]</label>
+				</control>
+			</control>
+			<control type="group">
+				<left>-30</left>
+				<right>200</right>
+				<bottom>0</bottom>
+				<height>70</height>
+				<visible>Control.HasFocus(50)</visible>
+				<include content="MediaFlagsInfoDialogLeft">
+					<param name="align" value="left" />
+					<param name="infolabel_prefix" value="Container(50)." />
+					<param name="show_ratings" value="false" />
+					<param name="resolution_var" value="$VAR[Container50_3DFlagVar]" />
+				</include>
+			</control>
+			<control type="grouplist" id="101">
+				<left>1000</left>
+				<top>90</top>
+				<width>300</width>
+				<height>565</height>
+				<onleft condition="Integer.IsGreater(Container(50).NumItems,0)">100</onleft>
+				<itemgap>dialogbuttons_itemgap</itemgap>
+				<align>top</align>
+				<scrolltime tween="quadratic">200</scrolltime>
+				<include content="DefaultDialogButton">
+					<param name="id" value="21" />
+					<param name="label" value="$LOCALIZE[208]" />
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="22" />
+					<param name="label" value="$LOCALIZE[40014]" />
+					<param name="visible">Window.IsActive(managevideoversions)</param>
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="23" />
+					<param name="label" value="$LOCALIZE[40015]" />
+					<param name="visible">Window.IsActive(managevideoextras)</param>
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="27" />
+					<param name="label" value="$LOCALIZE[13511]" />
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="24" />
+					<param name="label" value="$LOCALIZE[118]" />
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="26" />
+					<param name="label" value="$LOCALIZE[15015]" />
+				</include>
+				<include content="DefaultDialogButton">
+					<param name="id" value="25" />
+					<param name="label" value="$LOCALIZE[40023]" />
+					<param name="visible">Window.IsActive(managevideoversions)</param>
+				</include>
+			</control>
+		</control>
+	</controls>
+</window>
