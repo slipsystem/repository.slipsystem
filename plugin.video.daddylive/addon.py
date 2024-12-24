@@ -44,7 +44,7 @@ addon_url = sys.argv[0]
 addon_handle = int(sys.argv[1])
 params = dict(parse_qsl(sys.argv[2][1:]))
 addon = xbmcaddon.Addon(id='plugin.video.daddylive')
-DATA_PATH = os.path.join(xbmcvfs.translatePath('special://profile/addon_data/plugin.video.daddylive'), '')
+DATA_PATH = os.path.join(xbmcvfs.translatePath('special://home/addons/plugin.video.daddylive'), 'resources')
 
 def tv_icons():
     return create_directory(DATA_PATH, "tv_icons")
@@ -138,6 +138,7 @@ def Main_Menu():
         ['LIVE TV', 'live_tv'],
         ['Kids Channels', 'kids_tv'],
         ['Sports Channels', 'sports_tv'],
+        ['Crime Channels', 'crime_tv'],
         ['USA Channels', 'usa_tv'],
         ['UK Channels', 'uk_tv'],
         ['My Channels', 'fav_tv'],
@@ -254,6 +255,15 @@ def fav_gen():
             addDir(c[1], build_url({'mode': 'play', 'url': addon_url + c[0]}), False)
     closeDir()
 
+def crime_gen():
+    addon_url = baseurl
+    chData = channels()
+    for c in chData:
+        item_list = ['Crime+ Investigation USA', 'Sky Crime', 'Oxygen True Crime']
+        if c[1] in item_list:
+            addDir(c[1], build_url({'mode': 'play', 'url': addon_url + c[0]}), False)
+    closeDir()    
+
 def uk_gen():
     addon_url = baseurl
     chData = channels()
@@ -354,6 +364,8 @@ else:
             usa_gen()
         if servType == 'uk_tv':
             uk_gen()
+        if servType == 'crime_tv':
+            crime_gen()
 
     if mode == 'showChannels':
         transType = params.get('trType')

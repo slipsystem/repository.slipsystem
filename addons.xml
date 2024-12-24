@@ -110,7 +110,7 @@ For a complete view of changes visit https://github.com/b-jesch/skin.estuary.mod
 	</extension>
 </addon>
 
-	<addon id="plugin.video.daddylive" name="Daddylive" version="4.11.1" provider-name="Slipsystem, THE CREW">
+	<addon id="plugin.video.daddylive" name="Daddylive" version="4.11.2" provider-name="Slipsystem, THE CREW">
 		<requires>
 			<import addon="xbmc.python" version="3.0.0"/>
 			<import addon="script.module.requests" />
