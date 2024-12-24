@@ -259,7 +259,7 @@ def crime_gen():
     addon_url = baseurl
     chData = channels()
     for c in chData:
-        item_list = ['Crime+ Investigation USA', 'Sky Crime', 'Oxygen True Crime']
+        item_list = ['Crime+ Investigation USA', 'Sky Crime', 'Oxygen True Crime', 'Investigation Discovery (ID USA)']
         if c[1] in item_list:
             addDir(c[1], build_url({'mode': 'play', 'url': addon_url + c[0]}), False)
     closeDir()    
