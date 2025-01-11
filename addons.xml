@@ -51,7 +51,7 @@
 
 
 
-<addon id="skin.estuary.modv2" version="21.2.1+omega.12.1" name="Estuary MOD V2 Omega" provider-name="Slipsystem, Guilouz, K21 branch by PvD">
+<addon id="skin.estuary.modv2" version="21.2.1+omega.14+s" name="Estuary MOD V2 Omega" provider-name="Slipsystem, Guilouz, K21 branch by PvD">
 	<requires>
 		<import addon="xbmc.python" version="3.0.1"/>
 		<import addon="xbmc.gui" version="5.17.0"/>
@@ -109,6 +109,7 @@ For a complete view of changes visit https://github.com/b-jesch/skin.estuary.mod
         </news>
 	</extension>
 </addon>
+
 
 	<addon id="plugin.video.daddylive" name="Daddylive" version="4.11.2" provider-name="Slipsystem, THE CREW">
 		<requires>
