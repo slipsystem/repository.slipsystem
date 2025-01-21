@@ -51,10 +51,10 @@ def tv_icons():
 
 tv_icons_dir = tv_icons()
 mode = addon.getSetting('mode')
-baseurl = 'https://dlhd.so/'
+baseurl = 'https://thedaddy.to/'
 json_url = f'{baseurl}stream/stream-%s.php'
 schedule_url = baseurl + 'schedule/schedule-generated.json'
-UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0'
+UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
 FANART = addon.getAddonInfo('fanart')
 ICON = addon.getAddonInfo('icon')
 
@@ -194,10 +194,13 @@ def getTransData(categ):
                 event_time_local = get_local_time(time_str)
                 title = f'{event_time_local} {event}'
                 channels = item.get('channels')
+                if isinstance(channels, list) and all(isinstance(channel, dict) for channel in channels):
                 trns.append({
                     'title': title,
                     'channels': [{'channel_name': channel.get('channel_name'), 'channel_id': channel.get('channel_id')} for channel in channels]
                 })
+                else:
+                    log(f"Unexpected data structure in 'channels': {channels}")
 
     return trns
 
