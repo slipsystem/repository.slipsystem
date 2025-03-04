@@ -28,6 +28,7 @@ import xbmcvfs
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
+import base64
 import os
 
 
@@ -51,10 +52,10 @@ def tv_icons():
 
 tv_icons_dir = tv_icons()
 mode = addon.getSetting('mode')
-baseurl = 'https://daddylive.mp/'
+baseurl = 'https://thedaddy.to/'
 json_url = f'{baseurl}stream/stream-%s.php'
 schedule_url = baseurl + 'schedule/schedule-generated.json'
-UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36'
 FANART = addon.getAddonInfo('fanart')
 ICON = addon.getAddonInfo('icon')
 
@@ -309,40 +310,37 @@ def channels():
 
 
 def PlayStream(link):
-    url = link
-
-    hea = {
-        'Referer': baseurl + '/',
-        'user-agent': UA,
-    }
-
-    resp = requests.post(url, headers=hea).text
-    url_1 = re.findall('iframe src="(.*?)"', resp)[0]
-
-    hea = {
-        'Referer': url,
-        'user-agent': UA,
-    }
-
-    resp2 = requests.get(url_1, headers=hea, timeout=10)
-    links = re.findall('source: \'([^\']*)', resp2.text)
-    if links:
-        link = str(links[0])
-
+    try:
+        headers = {'Referer': baseurl, 'user-agent': UA}
+        resp = requests.post(link, headers=headers).text
+        url_1 = re.findall('iframe src="([^"]*)', resp)[0]
         parsed_url = urlparse(url_1)
         referer_base = f"{parsed_url.scheme}://{parsed_url.netloc}"
         referer = quote_plus(referer_base)
         user_agent = quote_plus(UA)
+        resp2 = requests.post(url_1, headers=headers).text
+        stream_id = re.findall('fetch\(\'([^\']*)',resp2)[0]
+        url_2 = re.findall('var channelKey = "([^"]*)',resp2)[0]
+        m3u8 = re.findall('(\/mono\.m3u8)',resp2)[0]
+        resp3 = referer_base + stream_id + url_2
+        url_3 = requests.post(resp3, headers=headers).text
+        key = re.findall(':"([^"]*)',url_3)[0]
 
-        link = f'{link}|Referer={referer}/&Origin={referer}&Keep-Alive=true&User-Agent={user_agent}'
+        final_link = f'https://{key}.iosplayer.ru/{key}/{url_2}{m3u8}|Referer={referer}/&Origin={referer}&Keep-Alive=true&User-Agent={user_agent}'
 
-        liz = xbmcgui.ListItem('Daddylive', path=link)
-        liz.setProperty('inputstream', 'inputstream.ffmpegdirect')
-        liz.setMimeType('application/x-mpegURL')
-        liz.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
-        liz.setProperty('inputstream.ffmpegdirect.stream_mode', 'timeshift')
-        liz.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
-        xbmcplugin.setResolvedUrl(addon_handle, True, liz)
+        if final_link.startswith("http"):
+            liz = xbmcgui.ListItem('Daddylive', path=final_link)
+            liz.setProperty('inputstream', 'inputstream.ffmpegdirect')
+            liz.setMimeType('application/x-mpegURL')
+            liz.setProperty('inputstream.ffmpegdirect.is_realtime_stream', 'true')
+            liz.setProperty('inputstream.ffmpegdirect.stream_mode', 'timeshift')
+            liz.setProperty('inputstream.ffmpegdirect.manifest_type', 'hls')
+            xbmcplugin.setResolvedUrl(addon_handle, True, liz)
+        else:
+            xbmcgui.Dialog().ok("Playback Error", "Invalid stream link.")
+    except Exception as e:
+        log(f"Error in PlayStream: {traceback.format_exc()}")
+
 
 
 kodiversion = getKodiversion()
