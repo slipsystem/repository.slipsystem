@@ -19,7 +19,7 @@ import os
 import sys
 import json
 import html
-from urllib.parse import urlencode, quote, unquote, parse_qsl, quote_plus, urlparse
+from urllib.parse import urlencode, quote, unquote, parse_qsl, quote_plus, urlparse, urljoin
 from datetime import datetime, timedelta, timezone
 import time
 import requests
@@ -39,15 +39,13 @@ def create_directory(dir_path, dir_name=None):
         os.makedirs(dir_path)
     return dir_path
 
-
 DATA_PATH = os.path.join(xbmcvfs.translatePath('special://home/addons/plugin.video.daddylive'), 'resources')
-
 
 def tv_icons():
     return create_directory(DATA_PATH, "tv_icons")
 
-
 tv_icons_dir = tv_icons()
+
 addon_url = sys.argv[0]
 addon_handle = int(sys.argv[1])
 params = dict(parse_qsl(sys.argv[2][1:]))
@@ -99,14 +97,26 @@ def resolve_active_baseurl(seed):
         log(f'Active base resolve failed, using seed. Error: {e}')
         return normalize_origin(seed)
 
-_active_cached = addon.getSetting('active_baseurl') or ''
-if not _active_cached:
-    _active_cached = resolve_active_baseurl(SEED_BASEURL)
-    addon.setSetting('active_baseurl', _active_cached)
-ACTIVE_BASE = _active_cached
+def get_active_base():
+    base = addon.getSetting('active_baseurl')
+    if not base:
+        base = resolve_active_baseurl(SEED_BASEURL)
+        addon.setSetting('active_baseurl', base)
+    if not base.endswith('/'):
+        base += '/'
+    return base
 
-json_url = f'{ACTIVE_BASE}stream/stream-%s.php'
-schedule_url = f'{ACTIVE_BASE}schedule/schedule-generated.php'
+def set_active_base(new_base: str):
+    if not new_base.endswith('/'):
+        new_base += '/'
+    addon.setSetting('active_baseurl', new_base)
+
+def abs_url(path: str) -> str:
+    return urljoin(get_active_base(), path.lstrip('/'))
+
+def _sched_headers():
+    base = get_active_base()
+    return {'User-Agent': UA, 'Referer': base, 'Origin': base}
 
 def get_local_time(utc_time_str):
     try:
@@ -159,27 +169,24 @@ def getKodiversion():
 
 def Main_Menu():
     menu = [
-        ['[B][COLOR gold]LIVE SPORTS SCHEDULE[/COLOR]', 'sched'],
-        ['[B][COLOR gold]LIVE TV CHANNELS[/COLOR]', 'live_tv'],
-        ['Kids Channels', 'kids_tv'],
-        ['Sports Channels', 'sports_tv'],
-        ['Crime Channels', 'crime_tv'],
-        ['USA Channels', 'usa_tv'],
-        ['UK Channels', 'uk_tv'],
-        ['My Channels', 'fav_tv'],
-        ['[B][COLOR green]SEARCH EVENTS SCHEDULE[/COLOR]', 'search'],
-        ['[B][COLOR green]SEARCH LIVE TV CHANNELS[/COLOR]', 'search_channels'],
-        ['[B][COLOR pink]REFRESH CATEGORIES[/COLOR]', 'refresh_sched']
+        ['[B][COLOR gold]LIVE SPORTS SCHEDULE[/COLOR][/B]', 'sched'],
+        ['[B][COLOR gold]LIVE TV CHANNELS[/COLOR][/B]', 'live_tv'],
+        ['[B][COLOR green]Kids CHANNELS[/COLOR][/B]', 'kids_tv'],
+        ['[B][COLOR green]Sports CHANNELS[/COLOR][/B]', 'sports_tv'],
+        ['[B][COLOR green]Crime CHANNELS[/COLOR][/B]', 'crime_tv'],
+        ['[B][COLOR green]UK CHANNELS[/COLOR][/B]', 'uk_tv'],
+        ['[B][COLOR blue]SEARCH EVENTS SCHEDULE[/COLOR][/B]', 'search'],
+        ['[B][COLOR blue]SEARCH LIVE TV CHANNELS[/COLOR][/B]', 'search_channels'],
+        ['[B][COLOR red]REFRESH CATEGORIES[/COLOR][/B]', 'refresh_sched'],
+        ['[B][COLOR red]SET ACTIVE DOMAIN (AUTO)[/COLOR][/B]', 'resolve_base_now'],
     ]
     for m in menu:
         addDir(m[0], build_url({'mode': 'menu', 'serv_type': m[1]}))
     closeDir()
 
-def _sched_headers():
-    return {'User-Agent': UA, 'Referer': ACTIVE_BASE, 'Origin': ACTIVE_BASE}
-
 def getCategTrans():
     hea = _sched_headers()
+    schedule_url = abs_url('schedule/schedule-generated.php')
     try:
         schedule = requests.get(schedule_url, headers=hea, timeout=10).json()
         categs = []
@@ -189,7 +196,7 @@ def getCategTrans():
         return categs
     except Exception as e:
         xbmcgui.Dialog().ok("Error", f"Error fetching category data: {e}")
-        log(f'schedule_url={schedule_url} active_base={ACTIVE_BASE}')
+        log(f'schedule_url={schedule_url} active_base={get_active_base()}')
         return []
 
 def Menu_Trans():
@@ -238,33 +245,22 @@ def getSource(trData):
     data = json.loads(unquote(trData))
     channels_data = data.get('channels')
     if channels_data and isinstance(channels_data, list):
-        url_stream = f'{ACTIVE_BASE}stream/stream-{channels_data[0]["channel_id"]}.php'
+        url_stream = abs_url(f'stream/stream-{channels_data[0]["channel_id"]}.php')
         xbmcplugin.setContent(addon_handle, 'videos')
         PlayStream(url_stream)
 
 def list_gen():
     chData = channels()
     for c in chData:
-        addDir(c[1], build_url({'mode': 'play', 'url': ACTIVE_BASE + c[0]}), False)
+        addDir(c[1], build_url({'mode': 'play', 'url': abs_url(c[0])}), False)
     closeDir()
-
 
 def kids_gen():
     chData = channels()
     for c in chData:
         item_list = ['Boomerang', 'Cartoon Network', 'Disney', 'Disney Channel', 'Disney XD', 'Disney JR', 'Nick JR', 'Nick', 'Nick Music', 'Nicktoons', 'Universal Kids USA', 'Sky Cinema Family UK']
         if c[1] in item_list:
-            addDir(c[1], build_url({'mode': 'play', 'url': ACTIVE_BASE + c[0]}), False)
-    closeDir()
-
-    
-
-def sports_gen():
-    chData = channels()
-    for c in chData:
-        item_list = ['Super Sport', 'Sky Sports', 'Sky Sports Football UK' , 'Sky Sports Arena UK' , 'Sky Sports Action UK' , 'Sky Sports Main Event' , 'Sky sports Premier League' , 'Sky Sports F1 UK' , 'Sky Sports F1 DE' , 'Sky Sports Cricket' , 'Sky Sports Golf UK' , 'Sky Sports Golf Italy' , 'Sky Sport MotoGP Italy' , 'Sky Sport Tennis Italy' , 'Sky Sports Tennis UK' , 'Sky Sports Tennis DE' , 'Sky Sport F1 Italy' , 'Sky Sports News UK' , 'Sky Sports MIX UK' , 'Sky Sport Top Event DE' , 'Sky Sport Mix DE' , 'Sky Sport Bundesliga 1 HD' , 'Sky Sport Austria 1 HD' , 'SportsNet New York (SNY)' , 'Sky Sport Football Italy' , 'Sky Sport UNO Italy' , 'Sky Sport Arena Italy' , 'Sky Sports Racing UK' , 'Sky Sport 1 NZ' , 'Sky Sport 2 NZ' , 'Sky Sport 3 NZ' , 'Sky Sport 4 NZ' , 'Sky Sport 5 NZ' , 'Sky Sport 6 NZ' , 'Sky Sport 7 NZ' , 'Sky Sport 8 NZ' , 'Sky Sport 9 NZ' , 'Sky Sport Select NZ' , 'Sportsnet Ontario' , 'Sportsnet One' , 'Sportsnet West' , 'Sportsnet East' , 'Sportsnet 360' , 'Sportsnet World' , 'SuperSport Grandstand' , 'SuperSport PSL' , 'SuperSport Premier league' , 'SuperSport LaLiga' , 'SuperSport Variety 1' , 'SuperSport Variety 2' , 'SuperSport Variety 3' , 'SuperSport Variety 4' , 'SuperSport Action' , 'SuperSport Rugby' , 'SuperSport Golf' , 'SuperSport Tennis' , 'SuperSport Motorsport' , 'Supersport Football' , 'SuperSport Cricket' , 'SuperSport MaXimo 1' , 'TNT Sports 1 UK' , 'TNT Sports 2 UK' , 'TNT Sports 3 UK' , 'TNT Sports 4 UK' , 'TF1 France' , 'TSN1' , 'TSN2' , 'TSN3' , 'TSN4' , 'TSN5' , 'Rally Tv' , 'NBA TV USA' , 'NBC Sports Chicago' , 'NBC Sports Philadelphia' , 'NBC Sports Washington' , 'Fox Sports 1 USA' , 'Fox Sports 2 USA' , 'FOX Soccer Plus' , 'Fox Cricket' , 'FOX Sports 502 AU' , 'FOX Sports 503 AU' , 'FOX Sports 504 AU' , 'FOX Sports 505 AU' , 'FOX Sports 506 AU' , 'FOX Sports 507 AU' , 'ESPN USA' , 'ESPN2 USA' , 'ESPNU USA' , 'BeIN SPORTS USA' , 'beIN SPORTS en Español' , 'beIN SPORTS Australia 1' , 'beIN SPORTS Australia 2' , 'beIN SPORTS Australia 3' , 'beIN Sports MENA English 1' , 'beIN Sports MENA English 2' , 'beIN Sports MENA English 3' , 'beIN Sports MENA 1' , 'beIN Sports MENA 2' , 'beIN Sports MENA 3' , 'beIN Sports MENA 4' , 'beIN Sports MENA 5' , 'beIN Sports MENA 6' , 'beIN Sports MENA 7' , 'beIN Sports MENA 8' , 'beIN Sports MENA 9' , 'beIN SPORTS XTRA 1' , 'beIN SPORTS XTRA 2']
-        if c[1] in item_list:
-            addDir(c[1], build_url({'mode': 'play', 'url': ACTIVE_BASE + c[0]}), False)
+            addDir(c[1], build_url({'mode': 'play', 'url': abs_url(c[0])}), False)
     closeDir()
 
 
@@ -273,66 +269,30 @@ def crime_gen():
     for c in chData:
         item_list = ['Crime+ Investigation USA', 'Sky Crime', 'Oxygen True Crime', 'Investigation Discovery (ID USA)']
         if c[1] in item_list:
-            addDir(c[1], build_url({'mode': 'play', 'url': addon_url + c[0]}), False)
-    closeDir()    
+            addDir(c[1], build_url({'mode': 'play', 'url': abs_url(c[0])}), False)
+    closeDir()
 
-
+def sports_gen():
+    chData = channels()
+    for c in chData:
+        item_list = ['Super Sport', 'Sky Sports', 'Sky Sports Football UK' , 'Sky Sports Arena UK' , 'Sky Sports Action UK' , 'Sky Sports Main Event' , 'Sky sports Premier League' , 'Sky Sports F1 UK' , 'Sky Sports F1 DE' , 'Sky Sports Cricket' , 'Sky Sports Golf UK' , 'Sky Sports Golf Italy' , 'Sky Sport MotoGP Italy' , 'Sky Sport Tennis Italy' , 'Sky Sports Tennis UK' , 'Sky Sports Tennis DE' , 'Sky Sport F1 Italy' , 'Sky Sports News UK' , 'Sky Sports MIX UK' , 'Sky Sport Top Event DE' , 'Sky Sport Mix DE' , 'Sky Sport Bundesliga 1 HD' , 'Sky Sport Austria 1 HD' , 'SportsNet New York (SNY)' , 'Sky Sport Football Italy' , 'Sky Sport UNO Italy' , 'Sky Sport Arena Italy' , 'Sky Sports Racing UK' , 'Sky Sport 1 NZ' , 'Sky Sport 2 NZ' , 'Sky Sport 3 NZ' , 'Sky Sport 4 NZ' , 'Sky Sport 5 NZ' , 'Sky Sport 6 NZ' , 'Sky Sport 7 NZ' , 'Sky Sport 8 NZ' , 'Sky Sport 9 NZ' , 'Sky Sport Select NZ' , 'Sportsnet Ontario' , 'Sportsnet One' , 'Sportsnet West' , 'Sportsnet East' , 'Sportsnet 360' , 'Sportsnet World' , 'SuperSport Grandstand' , 'SuperSport PSL' , 'SuperSport Premier league' , 'SuperSport LaLiga' , 'SuperSport Variety 1' , 'SuperSport Variety 2' , 'SuperSport Variety 3' , 'SuperSport Variety 4' , 'SuperSport Action' , 'SuperSport Rugby' , 'SuperSport Golf' , 'SuperSport Tennis' , 'SuperSport Motorsport' , 'Supersport Football' , 'SuperSport Cricket' , 'SuperSport MaXimo 1' , 'TNT Sports 1 UK' , 'TNT Sports 2 UK' , 'TNT Sports 3 UK' , 'TNT Sports 4 UK' , 'TF1 France' , 'TSN1' , 'TSN2' , 'TSN3' , 'TSN4' , 'TSN5' , 'Rally Tv' , 'NBA TV USA' , 'NBC Sports Chicago' , 'NBC Sports Philadelphia' , 'NBC Sports Washington' , 'Fox Sports 1 USA' , 'Fox Sports 2 USA' , 'FOX Soccer Plus' , 'Fox Cricket' , 'FOX Sports 502 AU' , 'FOX Sports 503 AU' , 'FOX Sports 504 AU' , 'FOX Sports 505 AU' , 'FOX Sports 506 AU' , 'FOX Sports 507 AU' , 'ESPN USA' , 'ESPN2 USA' , 'ESPNU USA' , 'BeIN SPORTS USA' , 'beIN SPORTS en Español' , 'beIN SPORTS Australia 1' , 'beIN SPORTS Australia 2' , 'beIN SPORTS Australia 3' , 'beIN Sports MENA English 1' , 'beIN Sports MENA English 2' , 'beIN Sports MENA English 3' , 'beIN Sports MENA 1' , 'beIN Sports MENA 2' , 'beIN Sports MENA 3' , 'beIN Sports MENA 4' , 'beIN Sports MENA 5' , 'beIN Sports MENA 6' , 'beIN Sports MENA 7' , 'beIN Sports MENA 8' , 'beIN Sports MENA 9' , 'beIN SPORTS XTRA 1' , 'beIN SPORTS XTRA 2']
+        if c[1] in item_list:
+            addDir(c[1], build_url({'mode': 'play', 'url': abs_url(c[0])}), False)
+    closeDir()
 
 def uk_gen():
-
-    addon_url = baseurl
-
     chData = channels()
-
     for c in chData:
-
         item_list = ['BBC One UK' , 'BBC Two UK' , 'BBC Three UK' , 'BBC Four UK' , 'Channel 4 UK' , 'Channel 5 UK' , 'DAZN 1 UK' , 'EuroSport 1 UK' , 'EuroSport 2 UK' , 'Film4 UK' , 'Gold UK' , 'ITV 1 UK' , 'ITV 2 UK' , 'ITV 3 UK' , 'ITV 4 UK' , 'LaLigaTV UK' , 'MTV UK' , 'MUTV UK' , 'Racing Tv UK' , 'Sky Sports Football UK' , 'Sky Sports Arena UK' , 'Sky Sports Action UK' , 'Sky Sports F1 UK' , 'Sky Sports Golf UK' , 'Sky Sports Tennis UK' , 'Sky Sports News UK' , 'Sky Sports MIX UK' , 'Sky Sports Racing UK' , 'S4C UK' , 'Sky Cinema Premiere UK' , 'Sky Cinema Select UK' , 'Sky Cinema Hits UK' , 'Sky Cinema Greats UK' , 'Sky Cinema Animation UK' , 'Sky Cinema Family UK' , 'Sky Cinema Action UK' , 'Sky Cinema Comedy UK' , 'Sky Cinema Thriller UK' , 'Sky Cinema Drama UK' , 'Sky Cinema Sci-Fi Horror UK' , 'Sky Showcase UK' , 'Sky Arts UK' , 'Sky Comedy UK' , 'TNT Sports 1 UK' , 'TNT Sports 2 UK' , 'TNT Sports 3 UK' , 'TNT Sports 4 UK' , 'Viaplay Sports 1 UK' , 'Viaplay Sports 2 UK' , 'Viaplay Xtra UK']
-
         if c[1] in item_list:
-
-            addDir(c[1], build_url({'mode': 'play', 'url': addon_url + c[0]}), False)
-
+            addDir(c[1], build_url({'mode': 'play', 'url': abs_url(c[0])}), False)
     closeDir()
-
-
-
-def fav_gen():
-
-    addon_url = baseurl
-
-    chData = channels()
-
-    for c in chData:
-
-        item_list = ['Comedy Central', 'A&E USA']
-
-        if c[1] in item_list:
-
-            addDir(c[1], build_url({'mode': 'play', 'url': addon_url + c[0]}), False)
-
-    closeDir()
-
-
-
-def usa_gen():
-
-    addon_url = baseurl
-
-    chData = channels()
-
-    for c in chData:
-
-        item_list = ['ABC USA' , 'A&E USA' , 'AMC USA' , 'ACC Network USA' , 'Adult Swim' , 'BET USA' , 'Bravo USA' , 'BIG TEN Network (BTN USA)' , 'COZI TV USA' , 'CMT USA' , 'CBS USA' , 'CW USA' , 'CW PIX 11 USA' , 'CNBC USA' , 'CNN USA' , 'Cinemax USA' , 'Crime+ Investigation USA' , 'Comet USA' , 'Cooking Channel USA' , 'CBSNY USA' , 'Court TV USA' , 'ESPN USA' , 'ESPN2 USA' , 'ESPNU USA' , 'Fox Sports 1 USA' , 'Fox Sports 2 USA' , 'FOX Deportes USA' , 'FOX USA' , 'FX USA' , 'FXX USA' , 'FOXNY USA' , 'FUSE TV USA' , 'GOLF Channel USA' , 'Galavisión USA' , 'HBO USA' , 'HBO2 USA' , 'HBO Comedy USA' , 'HBO Family USA' , 'HBO Latino USA' , 'HBO Signature USA' , 'HBO Zone USA' , 'History USA' , 'Investigation Discovery (ID USA)' , 'ION USA' , 'IFC TV USA' , 'Longhorn Network USA' , 'MSG USA' , 'MTV USA' , 'MAVTV USA' , 'MGM+ USA / Epix' , 'MLB Network USA' , 'MASN USA' , 'MY9TV USA' , 'METV USA' , 'NHL Network USA' , 'NESN USA' , 'NBC USA' , 'NBA TV USA' , 'NBCNY USA' , 'NewsNation USA' , 'Newsmax USA' , 'Nat Geo Wild USA' , 'Pac-12 Network USA' , 'POP TV USA' , 'PBS USA USA' , 'SEC Network USA' , 'Showtime USA' , 'Showtime SHOxBET USA' , 'Showtime 2 USA (SHO2) USA' , 'Showtime Showcase USA' , 'Showtime Extreme USA' , 'Showtime Family Zone (SHO Family Zone) USA' , 'Showtime Next (SHO Next) USA' , 'Showtime Women USA' , 'SYFY USA' , 'TUDN USA' , 'TBS USA' , 'TNT USA' , 'TruTV USA' , 'TCM USA' , 'TMC Channel USA' , 'TV ONE USA' , 'USA Network' , 'Universal Kids USA' , 'VH1 USA' , 'WETV USA' , 'YES Network USA' , '5 USA']
-
-        if c[1] in item_list:
-
-            addDir(c[1], build_url({'mode': 'play', 'url': addon_url + c[0]}), False)
 
 def channels():
-    url = ACTIVE_BASE + '24-7-channels.php'
+    url = abs_url('24-7-channels.php')
     do_adult = xbmcaddon.Addon().getSetting('adult_pw')
-    hea = {'Referer': ACTIVE_BASE, 'user-agent': UA}
-    resp = requests.post(url, headers=hea).text
+    hea = {'Referer': get_active_base(), 'User-Agent': UA}
+    resp = requests.post(url, headers=hea, timeout=10).text
     ch_block = re.compile('<center><h1(.+?)tab-2', re.MULTILINE | re.DOTALL).findall(str(resp))
     chan_data = re.compile('href=\"(.*)\" target(.*)<strong>(.*)</strong>').findall(ch_block[0])
     channels = []
@@ -345,7 +305,8 @@ def channels():
 
 def PlayStream(link):
     try:
-        headers = {'User-Agent': UA, 'Referer': ACTIVE_BASE, 'Origin': ACTIVE_BASE}
+        base = get_active_base()
+        headers = {'User-Agent': UA, 'Referer': base, 'Origin': base}
         response = requests.get(link, headers=headers, timeout=10).text
 
         if 'wikisport.best' in response:
@@ -358,11 +319,11 @@ def PlayStream(link):
                 headers['Referer'] = headers['Origin'] = url2
                 response = requests.get(url2, headers=headers, timeout=10).text
         else:
-            iframes = re.findall(r'<a[^>]*href="([^"]+)"[^>]*>\s*<button[^>]*>\s*Player\s*2\s*</button>', response)
+            iframes = re.findall(r'data-url="([^"]+)"\s+title="PLAYER 2"', response)
             if not iframes:
                 log("No iframe href found for Player 2")
                 return
-            url2 = ACTIVE_BASE + iframes[0].replace('//cast', '/cast')
+            url2 = abs_url(iframes[0].replace('//cast', '/cast'))
             headers['Referer'] = headers['Origin'] = url2
             response = requests.get(url2, headers=headers, timeout=10).text
 
@@ -410,29 +371,22 @@ def PlayStream(link):
             return
         server_lookup = server_lookup_match[0]
 
-        auth = requests.get(auth_url, headers=headers, timeout=10).text
+        _ = requests.get(auth_url, headers=headers, timeout=10).text
 
-        server_lookup_url = f"https://{urlparse(url2).netloc}{server_lookup}{channel_key}"
+        host_raw = f'https://{urlparse(url2).netloc}'
+        server_lookup_url = f"{host_raw}{server_lookup}{channel_key}"
         response = requests.get(server_lookup_url, headers=headers, timeout=10).json()
         server_key = response.get('server_key')
         if not server_key:
             log("No server_key in final response")
             return
 
-        host_raw = f'https://{urlparse(url2).netloc}'
         if server_key == "top1/cdn":
             m3u8 = f"https://top1.newkso.ru/top1/cdn/{channel_key}/mono.m3u8"
         else:
             m3u8 = f"https://{server_key}new.newkso.ru/{server_key}/{channel_key}/mono.m3u8"
-        m3u8 += f'|Referer={host_raw}/&Origin={host_raw}&Connection=Keep-Alive&User-Agent={quote_plus(UA)}'
 
-        if not xbmc.getCondVisibility('System.HasAddon(inputstream.ffmpegdirect)'):
-            xbmcgui.Dialog().ok(
-                "Missing InputStream",
-                "This stream requires the 'inputstream.ffmpegdirect' addon.\n\nPlease install/enable it to proceed."
-            )
-            log("inputstream.ffmpegdirect missing")
-            return
+        m3u8 += f'|Referer={host_raw}/&Origin={host_raw}&Connection=Keep-Alive&User-Agent={quote_plus(UA)}'
 
         liz = xbmcgui.ListItem('Daddylive', path=m3u8)
         liz.setProperty('inputstream', 'inputstream.ffmpegdirect')
@@ -501,8 +455,9 @@ def Search_Channels():
 
 def refresh_active_base():
     new_base = resolve_active_baseurl(SEED_BASEURL)
-    addon.setSetting('active_baseurl', new_base)
+    set_active_base(new_base)
     xbmcgui.Dialog().ok("Daddylive", f"Active domain set to:\n{new_base}")
+    xbmc.executebuiltin('Container.Refresh')
 
 kodiversion = getKodiversion()
 mode = params.get('mode', None)
@@ -518,16 +473,12 @@ else:
             list_gen()
         elif servType == 'kids_tv':
             kids_gen()
-        elif servType == 'fav_tv':
-            fav_gen()
         elif servType == 'sports_tv':
             sports_gen()
-        elif servType == 'usa_tv':
-            usa_gen()
-        elif servType == 'uk_tv':
-            uk_gen()
         elif servType == 'crime_tv':
             crime_gen()
+        elif servType == 'uk_tv':
+            uk_gen()
         elif servType == 'search':
             Search_Events()
         elif servType == 'search_channels':
